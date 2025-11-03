@@ -1,0 +1,117 @@
+{% extends 'dashboard/dashboard.html' %}
+
+{% block content %}
+<div class="container-fluid">
+    <!-- Back Button -->
+    <div class="mb-4">
+        <a href="{% url 'dashboard:customers' %}" class="btn btn-outline-primary">
+            <i class="fas fa-arrow-left me-2"></i>Back to Customers
+        </a>
+    </div>
+
+    <!-- Customer Header -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="chart-container">
+                <div class="row align-items-center">
+                    <div class="col-md-2 text-center">
+                        <div class="bg-primary rounded-circle d-inline-flex align-items-center justify-content-center text-white" 
+                             style="width: 80px; height: 80px; font-size: 2rem;">
+                            {{ customer.username|first|upper }}
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <h3>{{ customer.username }}</h3>
+                        <p class="text-muted mb-1">
+                            {% if profile and profile.full_name %}
+                                {{ profile.full_name }}
+                            {% else %}
+                                {{ customer.first_name }} {{ customer.last_name }}
+                            {% endif %}
+                        </p>
+                        <p class="text-muted mb-0">
+                            <i class="fas fa-envelope me-1"></i>{{ customer.email }}
+                            {% if profile and profile.phone %}
+                                <br><i class="fas fa-phone me-1"></i>{{ profile.phone }}
+                            {% endif %}
+                        </p>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="row text-center">
+                            <div class="col-6">
+                                <h4 class="text-primary">{{ order_stats.total_orders|default:0 }}</h4>
+                                <small class="text-muted">Total Orders</small>
+                            </div>
+                            <div class="col-6">
+                                <h4 class="text-success">${{ order_stats.total_spent|default:0|floatformat:2 }}</h4>
+                                <small class="text-muted">Total Spent</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Customer Orders -->
+    <div class="row">
+        <div class="col-12">
+            <div class="chart-container">
+                <h5 class="mb-4">Order History</h5>
+                {% if orders %}
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Order ID</th>
+                                <th>Date</th>
+                                <th>Amount</th>
+                                <th>Status</th>
+                                <th>Payment</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for order in orders %}
+                            <tr>
+                                <td><strong>#{{ order.id }}</strong></td>
+                                <td>{{ order.created_at|date:"M d, Y" }}</td>
+                                <td>${{ order.total_amount|floatformat:2 }}</td>
+                                <td>
+                                    <span class="badge 
+                                        {% if order.status == 'completed' %}bg-success
+                                        {% elif order.status == 'processing' %}bg-info
+                                        {% elif order.status == 'pending' %}bg-warning
+                                        {% else %}bg-danger{% endif %}">
+                                        {{ order.status|title }}
+                                    </span>
+                                </td>
+                                <td>
+                                    <span class="badge 
+                                        {% if order.payment_status == 'paid' %}bg-success
+                                        {% else %}bg-warning{% endif %}">
+                                        {{ order.payment_status|title }}
+                                    </span>
+                                </td>
+                                <td>
+                                    <a href="{% url 'dashboard:order_detail' order.id %}" 
+                                       class="btn btn-sm btn-outline-primary">
+                                        <i class="fas fa-eye"></i> View
+                                    </a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% else %}
+                <div class="text-center text-muted py-4">
+                    <i class="fas fa-shopping-cart fa-2x mb-2"></i>
+                    <p>No orders found for this customer</p>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

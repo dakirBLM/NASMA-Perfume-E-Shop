@@ -1,0 +1,1110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Details | Golden Fragrance</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --background: #fef9f3;
+            --foreground: #4a3728;
+            --card: #ffffff;
+            --card-foreground: #4a3728;
+            --primary: #d4a574;
+            --primary-foreground: #4a3728;
+            --secondary: #f7f3ed;
+            --secondary-foreground: #4a3728;
+            --muted: #f7f3ed;
+            --muted-foreground: #8b7355;
+            --accent: #e8d5b7;
+            --accent-foreground: #4a3728;
+            --destructive: #d4183d;
+            --destructive-foreground: #ffffff;
+            --border: rgba(212, 165, 116, 0.2);
+            --input-background: #ffffff;
+            --ring: #d4a574;
+            --radius: 0.625rem;
+            --chart-1: #d4a574;
+            --chart-2: #c9975b;
+            --chart-3: #b8864a;
+            --chart-4: #f2e6d3;
+            --chart-5: #8b7355;
+            --font-weight-medium: 500;
+            --font-weight-normal: 400;
+        }
+
+        body {
+            background-color: var(--background);
+            color: var(--foreground);
+            overflow-x: hidden;
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+        }
+
+        /* Header - Exact copy from order_history.html */
+        header {
+            position: fixed;
+            top: 1rem;
+            left: 1rem;
+            right: 1rem;
+            z-index: 1000;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 1rem;
+            backdrop-filter: blur(20px);
+            background: rgb(255, 255, 255);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+        }
+
+        header.scrolled {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(30px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            transform: translateY(0);
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 4rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            flex-shrink: 0;
+            margin-right: 2rem;
+        }
+
+        .logo h1 {
+            font-size: 1.75rem;
+            transition: all 0.3s ease;
+            color: var(--primary);
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+        }
+        /* Tracking Information Styles */
+.tracking-section {
+    background: var(--card);
+    border-radius: 1.5rem;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    border: 1px solid var(--border);
+}
+
+.tracking-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.tracking-company {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 600;
+    color: var(--foreground);
+}
+
+.tracking-number {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 600;
+}
+
+.tracking-link {
+    color: var(--primary);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border-bottom: 1px solid transparent;
+}
+
+.tracking-link:hover {
+    color: var(--chart-2);
+    border-bottom-color: var(--chart-2);
+    transform: translateY(-1px);
+}
+
+.tracking-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background: var(--primary);
+    color: var(--primary-foreground);
+    text-decoration: none;
+    border-radius: var(--radius);
+    font-weight: 600;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: none;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.875rem;
+}
+
+.tracking-button:hover {
+    background: var(--chart-2);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(212, 165, 116, 0.3);
+}
+
+/* Shipping Update Notice */
+.shipping-notice {
+    background: #fff8e1;
+    border: 1px solid #ffecb3;
+    border-radius: 1.5rem;
+    padding: 2rem;
+    margin-bottom: 2rem;
+}
+
+.shipping-notice h2 {
+    color: #7d6608;
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.shipping-notice h2 i {
+    color: #f57c00;
+}
+
+.shipping-notice p {
+    color: #8d6e00;
+    line-height: 1.6;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .tracking-section {
+        padding: 1.5rem;
+    }
+    
+    .tracking-info {
+        gap: 0.75rem;
+    }
+    
+    .shipping-notice {
+        padding: 1.5rem;
+    }
+}
+
+      
+
+        nav {
+            display: none;
+        }
+
+        @media (min-width: 768px) {
+            nav {
+                display: flex;
+                align-items: center;
+                gap: 2rem;
+                flex: 1;
+            }
+        }
+
+        .nav-link {
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            font-size: 0.95rem;
+            letter-spacing: -0.01em;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        header.scrolled .nav-link {
+            color: var(--foreground);
+        }
+
+        header:not(.scrolled) .nav-link {
+             color: var(--foreground);
+        }
+
+        .nav-link:hover {
+            color: var(--primary);
+            transform: translateY(-1px);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 2px;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .nav-link.active::after {
+            width: 100%;
+            background: var(--primary);
+        }
+
+        .search-container {
+            display: none;
+            align-items: center;
+            max-width: 24rem;
+            margin: 0 1.5rem;
+        }
+
+        @media (min-width: 1024px) {
+            .search-container {
+                display: flex;
+            }
+        }
+
+        .search-wrapper {
+            position: relative;
+            width: 100%;
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 0.75rem;
+            top: 50%;
+            transform: translateY(-50%);
+            transition: color 0.3s ease;
+        }
+
+        header.scrolled .search-icon {
+            color: var(--muted-foreground);
+        }
+
+        header:not(.scrolled) .search-icon {
+           color: var(--muted-foreground);
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 0.75rem 1rem 0.75rem 2.5rem;
+            border-radius: var(--radius);
+            border: 1px solid;
+            transition: all 0.3s ease;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.875rem;
+            background: transparent;
+        }
+
+        header.scrolled .search-input {
+            border-color: var(--border);
+            color: var(--foreground);
+            background: rgba(255, 255, 255, 0.8);
+        }
+
+        header:not(.scrolled) .search-input {
+            border-color: var(--border);
+            color: var(--foreground);
+            background: rgba(255, 255, 255, 0.8);
+        }
+
+        .search-input::placeholder {
+            transition: color 0.3s ease;
+        }
+
+        header.scrolled .search-input::placeholder {
+            color: var(--muted-foreground);
+        }
+
+        header:not(.scrolled) .search-input::placeholder {
+             color: var(--muted-foreground);
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            flex-shrink: 0;
+        }
+
+        .icon-button {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            width: 2.5rem;
+            height: 2.5rem;
+            border: none;
+            background: transparent;
+            border-radius: var(--radius);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        @media (min-width: 768px) {
+            .icon-button {
+                display: flex;
+            }
+        }
+
+        header.scrolled .icon-button {
+            color: var(--foreground);
+        }
+
+        header:not(.scrolled) .icon-button {
+             color: var(--foreground);
+        }
+
+        .icon-button:hover {
+            background: var(--accent);
+            color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(212, 165, 116, 0.2);
+        }
+
+        .icon-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .icon-button:hover::before {
+            left: 100%;
+        }
+
+        .cart-button {
+            position: relative;
+        }
+
+        .cart-badge {
+            position: absolute;
+            top: -0.25rem;
+            right: -0.25rem;
+            background: var(--primary);
+            color: var(--primary-foreground);
+            font-size: 0.7rem;
+            border-radius: 50%;
+            width: 1.25rem;
+            height: 1.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            animation: pulse 2s infinite;
+        }
+
+        .mobile-menu-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 2.5rem;
+            height: 2.5rem;
+            border: none;
+            background: transparent;
+            border-radius: var(--radius);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        @media (min-width: 768px) {
+            .mobile-menu-button {
+                display: none;
+            }
+        }
+
+        header.scrolled .mobile-menu-button {
+            color: var(--foreground);
+        }
+
+        header:not(.scrolled) .mobile-menu-button {
+              color: var(--foreground);
+        }
+
+        .mobile-menu-button:hover {
+            background: var(--accent);
+            color: var(--primary);
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+        }
+
+        /* Order Detail Styles */
+        .order-detail-container {
+            padding: 8rem 1rem 4rem;
+            background: var(--background);
+            min-height: 100vh;
+        }
+
+        .order-detail-content {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary);
+            text-decoration: none;
+            margin-bottom: 2rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .back-button:hover {
+            transform: translateX(-5px);
+        }
+
+        .order-header {
+            background: var(--card);
+            border-radius: 1.5rem;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--border);
+        }
+
+        .order-title {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--foreground);
+        }
+
+        .order-meta {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .meta-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .meta-label {
+            font-size: 0.875rem;
+            color: var(--muted-foreground);
+            font-weight: 500;
+        }
+
+        .meta-value {
+            font-size: 1rem;
+            color: var(--foreground);
+            font-weight: 600;
+        }
+
+        .order-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            font-weight: 600;
+            font-size: 0.875rem;
+        }
+
+        .status-pending { background: #fff3cd; color: #856404; }
+        .status-confirmed { background: #cce7ff; color: #004085; }
+        .status-processing { background: #d1ecf1; color: #0c5460; }
+        .status-shipped { background: #d4edda; color: #155724; }
+        .status-delivered { background: #e8f5e8; color: #1e7e34; }
+        .status-cancelled { background: #f8d7da; color: #721c24; }
+
+        .order-sections {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .order-section {
+            background: var(--card);
+            border-radius: 1.5rem;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--border);
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--foreground);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .section-title i {
+            color: var(--primary);
+        }
+
+        .order-items {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .order-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            border-radius: 1rem;
+            background: var(--secondary);
+            transition: all 0.3s ease;
+        }
+
+        .order-item:hover {
+            background: var(--accent);
+        }
+
+        .item-image {
+            width: 80px;
+            height: 80px;
+            border-radius: 0.75rem;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .item-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .item-details {
+            flex: 1;
+        }
+
+        .item-name {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+            color: var(--foreground);
+        }
+
+        .item-price {
+            color: var(--muted-foreground);
+            font-size: 0.875rem;
+        }
+
+        .item-quantity {
+            background: var(--primary);
+            color: var(--primary-foreground);
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        .item-total {
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 1.125rem;
+        }
+
+        .shipping-address {
+            line-height: 1.6;
+        }
+
+        .address-line {
+            margin-bottom: 0.25rem;
+        }
+
+        .order-summary {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .summary-row:last-child {
+            border-bottom: none;
+        }
+
+        .summary-label {
+            color: var(--muted-foreground);
+        }
+
+        .summary-value {
+            font-weight: 600;
+        }
+
+        .summary-total {
+            font-size: 1.25rem;
+            color: var(--primary);
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--radius);
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            border: none;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.875rem;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: var(--primary-foreground);
+        }
+
+        .btn-primary:hover {
+            background: var(--chart-2);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(212, 165, 116, 0.3);
+        }
+
+        .btn-outline {
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            background: transparent;
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: var(--primary-foreground);
+            transform: translateY(-2px);
+        }
+
+        .empty-order {
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+
+        .empty-order-icon {
+            font-size: 4rem;
+            color: var(--muted-foreground);
+            margin-bottom: 1rem;
+        }
+
+        /* Footer Styles */
+        .footer {
+            background: var(--foreground);
+            color: white;
+            padding: 3rem 1rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .social-media {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 3rem;
+            height: 3rem;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background: var(--primary);
+            color: var(--primary-foreground);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.875rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .order-meta {
+                grid-template-columns: 1fr;
+            }
+
+            .order-item {
+                flex-direction: column;
+                text-align: center;
+                gap: 0.75rem;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .order-meta {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header - Exact copy from order_history.html -->
+    <header id="header" class="scrolled">
+        <div class="header-container">
+            <div class="header-content">
+                <div class="logo">
+                 
+                </div>
+
+                <nav>
+                    <a href="{% url 'home' %}" class="nav-link">Home</a>
+                    <a href="{% url 'products:product_list' %}" class="nav-link">Perfumes</a>
+                    <a href="{% url 'products:collection_list' %}" class="nav-link">Collections</a>
+                    <a href="{% url 'products:category_list' %}" class="nav-link">Categories</a>
+                    <a href="{% url 'orders:order_history' %}" class="nav-link active">My Orders</a>
+                    <a href="#" class="nav-link">Contact</a>
+                </nav>
+
+                <div class="search-container">
+                    <div class="search-wrapper">
+                        <i class="fas fa-search search-icon"></i>
+                        <input type="text" class="search-input" placeholder="Search perfumes...">
+                    </div>
+                </div>
+
+                <div class="header-actions">
+                    <a href="{% url 'accounts:profile' %}" class="icon-button">
+                        <i class="fas fa-user"></i>
+                    </a>
+                    <a href="{% url 'accounts:wishlist' %}" class="icon-button">
+                        <i class="fas fa-heart"></i>
+                        {% if wishlist_count > 0 %}
+                        <span class="cart-badge">{{ wishlist_count }}</span>
+                        {% endif %}
+                    </a>
+                    <a href="{% url 'orders:cart' %}" class="icon-button cart-button">
+                        <i class="fas fa-shopping-bag"></i>
+                           {% if cart_count > 0 %}
+                        <span class="cart-badge">{{ cart_count }}</span>
+                              {% endif %}
+                    </a>
+                </div>
+
+                <button class="mobile-menu-button">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Order Detail Section -->
+    <section class="order-detail-container">
+        <div class="order-detail-content">
+            <a href="{% url 'orders:order_history' %}" class="back-button">
+                <i class="fas fa-arrow-left"></i>
+                Back to Order History
+            </a>
+
+            {% if order %}
+            <div class="order-header">
+                <h1 class="order-title">Order #{{ order.order_number }}</h1>
+                
+                <div class="order-meta">
+                    <div class="meta-item">
+                        <span class="meta-label">Order Date</span>
+                        <span class="meta-value">{{ order.created_at|date:"F d, Y" }}</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Status</span>
+                        <span class="order-status status-{{ order.status }}">
+                            <i class="fas 
+                                {% if order.status == 'pending' %}fa-clock
+                                {% elif order.status == 'confirmed' %}fa-check-circle
+                                {% elif order.status == 'processing' %}fa-cog
+                                {% elif order.status == 'shipped' %}fa-shipping-fast
+                                {% elif order.status == 'delivered' %}fa-box-open
+                                {% elif order.status == 'cancelled' %}fa-times-circle
+                                {% else %}fa-info-circle{% endif %}">
+                            </i>
+                            {{ order.get_status_display }}
+                        </span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Total Amount</span>
+                        <span class="meta-value">{{ order.final_total }} Kč</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Payment Method</span>
+                        <span class="meta-value">
+                            {% if order.payment_method %}
+                                {{ order.get_payment_method_display }}
+                            {% else %}
+                                Stripe
+                            {% endif %}
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="order-sections">
+                <!-- Order Items -->
+                <div class="order-section">
+                    <h2 class="section-title">
+                        <i class="fas fa-box"></i>
+                        Order Items
+                    </h2>
+                    <div class="order-items">
+                        {% for item in order.items.all %}
+                        <div class="order-item">
+                            <div class="item-image">
+                                {% if item.product.image %}
+                                <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}">
+                                {% else %}
+                                <img src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="{{ item.product.name }}">
+                                {% endif %}
+                            </div>
+                            <div class="item-details">
+                                <div class="item-name">{{ item.product.name }}</div>
+                                <div class="item-price">{{ item.price }} Kč each</div>
+                            </div>
+                            <div class="item-quantity">
+                                Qty: {{ item.quantity }}
+                            </div>
+                            <div class="item-total">
+                                {{ item.total_price }} Kč
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <!-- Shipping Information -->
+                <div class="order-section">
+                    <h2 class="section-title">
+                        <i class="fas fa-truck"></i>
+                        Shipping Information
+                    </h2>
+                    <div class="shipping-address">
+                        <div class="address-line"><strong>{{ order.full_name }}</strong></div>
+                        <div class="address-line">{{ order.address }}</div>
+                        <div class="address-line">{{ order.city }}, {{ order.postal_code }}</div>
+                        <div class="address-line">{{ order.country }}</div>
+                        <div class="address-line" style="margin-top: 1rem;">
+                            <i class="fas fa-envelope"></i>
+                            {{ order.email }}
+                        </div>
+                    </div>
+                </div>
+<!-- Tracking Information -->
+{% if order.tracking_number %}
+<div class="tracking-section">
+    <h2 class="section-title">
+        <i class="fas fa-shipping-fast"></i>
+        Tracking Information
+    </h2>
+    <div class="tracking-info">
+        {% if order.tracking_company %}
+        <div class="tracking-company">
+            <i class="fas fa-building"></i>
+            <strong>Shipping Company:</strong> {{ order.tracking_company }}
+        </div>
+        {% endif %}
+        
+        <div class="tracking-number">
+            <i class="fas fa-barcode"></i>
+            <strong>Tracking Number:</strong> 
+            {% if order.tracking_url %}
+                <a href="{{ order.tracking_url }}" target="_blank" class="tracking-link">
+                    {{ order.tracking_number }}
+                </a>
+            {% else %}
+                {{ order.tracking_number }}
+            {% endif %}
+        </div>
+        
+        {% if order.tracking_url and not order.tracking_url in order.tracking_number %}
+        <div>
+            <a href="{{ order.tracking_url }}" target="_blank" class="tracking-button">
+                <i class="fas fa-external-link-alt"></i>
+                Track Your Package
+            </a>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% elif order.status == 'shipped' %}
+<div class="shipping-notice">
+    <h2 class="section-title">
+        <i class="fas fa-info-circle"></i>
+        Shipping Update
+    </h2>
+    <p>Your order has been shipped. Tracking information will be available soon.</p>
+</div>
+{% endif %}
+
+                <!-- Order Summary -->
+                <div class="order-section">
+                    <h2 class="section-title">
+                        <i class="fas fa-receipt"></i>
+                        Order Summary
+                    </h2>
+                    <div class="order-summary">
+                        <div class="summary-row">
+                            <span class="summary-label">Subtotal</span>
+                            <span class="summary-value">{{ order.total_amount }} Kč</span>
+                        </div>
+                        <div class="summary-row">
+                            <span class="summary-label">Shipping</span>
+                            <span class="summary-value">{{ order.shipping_cost }} Kč</span>
+                        </div>
+                        <div class="summary-row">
+                            <span class="summary-label">Tax</span>
+                            <span class="summary-value">{{ order.tax_amount }} Kč</span>
+                        </div>
+                        <div class="summary-row" style="border-top: 2px solid var(--primary); padding-top: 1rem;">
+                            <span class="summary-label summary-total">Total</span>
+                            <span class="summary-value summary-total">{{ order.final_total }} Kč</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Order Actions -->
+                <div class="order-section">
+                    <h2 class="section-title">
+                        <i class="fas fa-cog"></i>
+                        Order Actions
+                    </h2>
+                    <div class="action-buttons">
+                        {% if order.status == 'delivered' %}
+                        <a href="#" class="btn btn-primary">
+                            <i class="fas fa-star"></i>
+                            Write a Review
+                        </a>
+                        {% endif %}
+                        
+                        {% if order.status == 'shipped' %}
+                        <a href="#" class="btn btn-primary">
+                            <i class="fas fa-map-marker-alt"></i>
+                            Track Package
+                        </a>
+                        {% endif %}
+                        
+                        <a href="{% url 'orders:order_history' %}" class="btn btn-outline">
+                            <i class="fas fa-list"></i>
+                            View All Orders
+                        </a>
+                        
+                        <a href="{% url 'products:product_list' %}" class="btn btn-outline">
+                            <i class="fas fa-shopping-bag"></i>
+                            Continue Shopping
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            {% else %}
+            <div class="empty-order">
+                <div class="empty-order-icon">
+                    <i class="fas fa-exclamation-circle"></i>
+                </div>
+                <h3>Order Not Found</h3>
+                <p>The order you're looking for doesn't exist or you don't have permission to view it.</p>
+                <a href="{% url 'orders:order_history' %}" class="btn btn-primary" style="margin-top: 1rem;">
+                    Back to Order History
+                </a>
+            </div>
+            {% endif %}
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="social-media">
+                <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-pinterest"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-tiktok"></i></a>
+            </div>
+            <p class="copyright">&copy; 2024 Golden Fragrance. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Header scroll effect - Exact copy from order_history.html
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Add any additional JavaScript for order details here
+        document.addEventListener('DOMContentLoaded', function() {
+            // You can add order-specific JavaScript here
+            console.log('Order detail page loaded');
+        });
+    </script>
+</body>
+</html>

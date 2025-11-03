@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account | Golden Fragrance</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --background: #fef9f3;
+            --foreground: #4a3728;
+            --card: #ffffff;
+            --card-foreground: #4a3728;
+            --primary: #d4a574;
+            --primary-foreground: #4a3728;
+            --secondary: #f7f3ed;
+            --secondary-foreground: #4a3728;
+            --muted: #f7f3ed;
+            --muted-foreground: #8b7355;
+            --accent: #e8d5b7;
+            --accent-foreground: #4a3728;
+            --destructive: #d4183d;
+            --destructive-foreground: #ffffff;
+            --border: rgba(212, 165, 116, 0.2);
+            --input-background: #ffffff;
+            --ring: #d4a574;
+            --radius: 0.625rem;
+            --chart-1: #d4a574;
+            --chart-2: #c9975b;
+            --chart-3: #b8864a;
+            --chart-4: #f2e6d3;
+            --chart-5: #8b7355;
+            --font-weight-medium: 500;
+            --font-weight-normal: 400;
+        }
+
+        body {
+            background-color: var(--background);
+            color: var(--foreground);
+            overflow-x: hidden;
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 1rem;
+            left: 1rem;
+            right: 1rem;
+            z-index: 1000;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 1rem;
+            backdrop-filter: blur(20px);
+            background: rgba(255, 255, 255, 0.95);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 4rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            flex-shrink: 0;
+            margin-right: 2rem;
+        }
+
+        .logo h1 {
+            font-size: 1.75rem;
+            color: var(--primary);
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+        }
+
+        nav {
+            display: none;
+        }
+
+        @media (min-width: 768px) {
+            nav {
+                display: flex;
+                align-items: center;
+                gap: 2rem;
+                flex: 1;
+            }
+        }
+
+        .nav-link {
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            font-size: 0.95rem;
+            letter-spacing: -0.01em;
+            position: relative;
+            padding: 0.5rem 0;
+            color: var(--foreground);
+        }
+
+        .nav-link:hover {
+            color: var(--primary);
+            transform: translateY(-1px);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 2px;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .nav-link.active::after {
+            width: 100%;
+            background: var(--primary);
+        }
+
+        .search-container {
+            display: none;
+            align-items: center;
+            max-width: 24rem;
+            margin: 0 1.5rem;
+        }
+
+        @media (min-width: 1024px) {
+            .search-container {
+                display: flex;
+            }
+        }
+
+        .search-wrapper {
+            position: relative;
+            width: 100%;
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 0.75rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--muted-foreground);
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 0.75rem 1rem 0.75rem 2.5rem;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            color: var(--foreground);
+            background: rgba(255, 255, 255, 0.8);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.875rem;
+        }
+
+        .search-input::placeholder {
+            color: var(--muted-foreground);
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            flex-shrink: 0;
+        }
+
+        .icon-button {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            width: 2.5rem;
+            height: 2.5rem;
+            border: none;
+            background: transparent;
+            border-radius: var(--radius);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            color: var(--foreground);
+        }
+
+        @media (min-width: 768px) {
+            .icon-button {
+                display: flex;
+            }
+        }
+
+        .icon-button:hover {
+            background: var(--accent);
+            color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(212, 165, 116, 0.2);
+        }
+
+        .cart-button {
+            position: relative;
+        }
+
+        .cart-badge {
+            position: absolute;
+            top: -0.25rem;
+            right: -0.25rem;
+            background: var(--primary);
+            color: var(--primary-foreground);
+            font-size: 0.7rem;
+            border-radius: 50%;
+            width: 1.25rem;
+            height: 1.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            animation: pulse 2s infinite;
+        }
+
+        .mobile-menu-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 2.5rem;
+            height: 2.5rem;
+            border: none;
+            background: transparent;
+            border-radius: var(--radius);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            color: var(--foreground);
+        }
+
+        @media (min-width: 768px) {
+            .mobile-menu-button {
+                display: none;
+            }
+        }
+
+        .mobile-menu-button:hover {
+            background: var(--accent);
+            color: var(--primary);
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+        }
+
+        /* Registration Form Styles */
+        .auth-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 6rem 1rem 4rem;
+            background: var(--background);
+        }
+
+        .auth-card {
+            background: var(--card);
+            padding: 3rem;
+            border-radius: 2rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--border);
+            width: 100%;
+            max-width: 480px;
+            margin-top: 2rem;
+        }
+
+        .auth-title {
+            text-align: center;
+            margin-bottom: 0.5rem;
+            color: var(--foreground);
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+        }
+
+        .auth-subtitle {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--muted-foreground);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--foreground);
+            font-family: 'Inter', sans-serif;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            background: var(--input-background);
+            color: var(--foreground);
+            font-family: 'Inter', sans-serif;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(212, 165, 116, 0.1);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        @media (max-width: 480px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .auth-card {
+                padding: 2rem;
+                margin-top: 1rem;
+            }
+        }
+
+        .btn-auth {
+            width: 100%;
+            padding: 1rem;
+            background: var(--primary);
+            color: var(--primary-foreground);
+            border: none;
+            border-radius: var(--radius);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .btn-auth:hover {
+            background: var(--chart-2);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(212, 165, 116, 0.3);
+        }
+
+        .auth-link {
+            text-align: center;
+            margin-top: 1.5rem;
+        }
+
+        .auth-link a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .auth-link a:hover {
+            text-decoration: underline;
+        }
+
+        .messages {
+            margin-bottom: 1.5rem;
+        }
+
+        .alert {
+            padding: 1rem;
+            border-radius: var(--radius);
+            margin-bottom: 1rem;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .alert-success {
+            background: rgba(212, 165, 116, 0.1);
+            color: var(--primary);
+            border: 1px solid var(--primary);
+        }
+
+        .alert-error {
+            background: rgba(212, 24, 61, 0.1);
+            color: var(--destructive);
+            border: 1px solid var(--destructive);
+        }
+
+        .form-helptext {
+            font-size: 0.875rem;
+            color: var(--muted-foreground);
+            margin-top: 0.25rem;
+        }
+
+        .errorlist {
+            color: var(--destructive);
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+            list-style: none;
+            padding: 0;
+        }
+
+        .password-requirements {
+            background: var(--secondary);
+            padding: 1rem;
+            border-radius: var(--radius);
+            margin-top: 1rem;
+            border: 1px solid var(--border);
+        }
+
+        .password-requirements h4 {
+            margin-bottom: 0.5rem;
+            color: var(--foreground);
+            font-size: 0.875rem;
+        }
+
+        .password-requirements ul {
+            color: var(--muted-foreground);
+            font-size: 0.75rem;
+            margin: 0;
+            padding-left: 1.25rem;
+            line-height: 1.4;
+        }
+
+        .divider {
+            text-align: center;
+            margin: 1.5rem 0;
+            color: var(--muted-foreground);
+            position: relative;
+        }
+
+        .divider::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: var(--border);
+            z-index: 1;
+        }
+
+        .divider span {
+            background: var(--card);
+            padding: 0 1rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--foreground);
+            color: white;
+            padding: 3rem 1rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .social-media {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 3rem;
+            height: 3rem;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .social-link:hover {
+            background: var(--primary);
+            color: var(--primary-foreground);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            color: rgba(255, 255, 255, 0.7);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.875rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .auth-container {
+                padding: 5rem 1rem 2rem;
+            }
+            
+            .auth-card {
+                padding: 2rem 1.5rem;
+            }
+            
+            .social-media {
+                gap: 1rem;
+            }
+            
+            .social-link {
+                width: 2.5rem;
+                height: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="header-container">
+            <div class="header-content">
+             
+
+                <nav>
+                    <a href="{% url 'home' %}" class="nav-link">Home</a>
+                    <a href="{% url 'products:product_list' %}" class="nav-link">Perfumes</a>
+                    <a href="{% url 'products:collection_list' %}" class="nav-link">Collections</a>
+                    <a href="{% url 'products:category_list' %}" class="nav-link">Categories</a>
+                    {% if user.is_authenticated %}
+                    <a href="{% url 'orders:order_history' %}" class="nav-link">My Orders</a>
+                    {% endif %}
+                    <a href="#" class="nav-link">Contact</a>
+                </nav>
+
+                <div class="search-container">
+                    <div class="search-wrapper">
+                        <i class="fas fa-search search-icon"></i>
+                        <form method="get" action="{% url 'products:product_list' %}">
+                            <input type="search" name="q" placeholder="Search fragrances..." class="search-input">
+                        </form>
+                    </div>
+                </div>
+
+                <div class="header-actions">
+                    {% if user.is_authenticated %}
+                    <a href="{% url 'accounts:profile' %}" class="icon-button">
+                        <i class="fas fa-user"></i>
+                    </a>
+                    {% else %}
+                    <a href="{% url 'accounts:login' %}" class="icon-button">
+                        <i class="fas fa-user"></i>
+                    </a>
+                    {% endif %}
+                    
+                    <a href="{% url 'accounts:wishlist' %}" class="icon-button">
+                        <i class="fas fa-heart"></i>
+                        {% if wishlist_count > 0 %}
+                        <span class="cart-badge">{{ wishlist_count }}</span>
+                        {% endif %}
+                    </a>
+                    
+                    <a href="{% url 'orders:cart' %}" class="icon-button cart-button">
+                        <i class="fas fa-shopping-bag"></i>
+                        {% if cart_count > 0 %}
+                        <span class="cart-badge">{{ cart_count }}</span>
+                        {% endif %}
+                    </a>
+                    
+                    <button class="mobile-menu-button">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Registration Section -->
+    <section class="auth-container">
+        <div class="auth-card">
+            <h2 class="auth-title">Create Account</h2>
+            <p class="auth-subtitle">Join Golden Fragrance and discover luxury scents</p>
+            
+            <!-- Messages -->
+            {% if messages %}
+            <div class="messages">
+                {% for message in messages %}
+                <div class="alert alert-{% if message.tags == 'error' %}error{% else %}success{% endif %}">
+                    {{ message }}
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+
+            <form method="post">
+                {% csrf_token %}
+                
+                <!-- Use Django form fields for better validation -->
+                <div class="form-group">
+                    <label class="form-label">Full Name *</label>
+                    {{ form.full_name }}
+                    {{ form.full_name.errors }}
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Age</label>
+                        {{ form.age }}
+                        {{ form.age.errors }}
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Phone</label>
+                        {{ form.phone }}
+                        {{ form.phone.errors }}
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Email Address *</label>
+                    {{ form.email }}
+                    {{ form.email.errors }}
+                </div>
+
+                <!-- Account Information -->
+                <div class="form-group">
+                    <label class="form-label">Username *</label>
+                    {{ form.username }}
+                    {{ form.username.errors }}
+                    <div class="form-helptext">Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.</div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Password *</label>
+                    {{ form.password1 }}
+                    {{ form.password1.errors }}
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Confirm Password *</label>
+                    {{ form.password2 }}
+                    {{ form.password2.errors }}
+                </div>
+
+                <!-- Password Requirements -->
+                <div class="password-requirements">
+                    <h4>Password Requirements:</h4>
+                    <ul>
+                        <li>Your password can't be too similar to your other personal information.</li>
+                        <li>Your password must contain at least 8 characters.</li>
+                        <li>Your password can't be a commonly used password.</li>
+                        <li>Your password can't be entirely numeric.</li>
+                    </ul>
+                </div>
+
+                <button type="submit" class="btn-auth">
+                    Create Account
+                    <i class="fas fa-user-plus" style="margin-left: 0.5rem;"></i>
+                </button>
+            </form>
+
+            <div class="divider">
+                <span>Already have an account?</span>
+            </div>
+
+            <div class="auth-link">
+                <p>
+                    <a href="{% url 'accounts:login' %}">
+                        <i class="fas fa-sign-in-alt" style="margin-right: 0.5rem;"></i>
+                        Sign in to your account
+                    </a>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="social-media">
+                <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-pinterest"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-tiktok"></i></a>
+            </div>
+            <p class="copyright">&copy; 2024 Golden Fragrance. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuButton = document.querySelector('.mobile-menu-button');
+            const nav = document.querySelector('nav');
+            
+            mobileMenuButton.addEventListener('click', function() {
+                nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
+                if (nav.style.display === 'flex') {
+                    nav.style.flexDirection = 'column';
+                    nav.style.position = 'absolute';
+                    nav.style.top = '100%';
+                    nav.style.left = '0';
+                    nav.style.right = '0';
+                    nav.style.background = 'var(--card)';
+                    nav.style.padding = '1rem';
+                    nav.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.1)';
+                    nav.style.borderRadius = '1rem';
+                    nav.style.margin = '0 1rem';
+                    nav.style.gap = '1rem';
+                }
+            });
+
+            // Password confirmation validation
+            const password1 = document.querySelector('input[name="password1"]');
+            const password2 = document.querySelector('input[name="password2"]');
+            
+            function validatePassword() {
+                if (password1.value !== password2.value && password2.value !== '') {
+                    password2.style.borderColor = 'var(--destructive)';
+                    password2.style.boxShadow = '0 0 0 3px rgba(212, 24, 61, 0.1)';
+                } else {
+                    password2.style.borderColor = 'var(--border)';
+                    password2.style.boxShadow = 'none';
+                }
+            }
+            
+            if (password1 && password2) {
+                password1.addEventListener('input', validatePassword);
+                password2.addEventListener('input', validatePassword);
+            }
+
+            // Real-time email validation
+            const emailInput = document.querySelector('input[name="email"]');
+            if (emailInput) {
+                emailInput.addEventListener('blur', function() {
+                    const email = this.value;
+                    if (email && !email.includes('@')) {
+                        this.style.borderColor = 'var(--destructive)';
+                        this.style.boxShadow = '0 0 0 3px rgba(212, 24, 61, 0.1)';
+                    } else {
+                        this.style.borderColor = 'var(--border)';
+                        this.style.boxShadow = 'none';
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

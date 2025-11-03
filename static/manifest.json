@@ -1,0 +1,15 @@
+{
+  "name": "My App",
+  "short_name": "MyApp",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#000000",
+  "icons": [
+    {
+      "src": "/static/account.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ]
+}

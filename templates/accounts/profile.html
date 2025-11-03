@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile | Golden Fragrance</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --background: #fef9f3;
+            --foreground: #4a3728;
+            --card: #ffffff;
+            --card-foreground: #4a3728;
+            --primary: #d4a574;
+            --primary-foreground: #4a3728;
+            --secondary: #f7f3ed;
+            --secondary-foreground: #4a3728;
+            --muted: #f7f3ed;
+            --muted-foreground: #8b7355;
+            --accent: #e8d5b7;
+            --accent-foreground: #4a3728;
+            --destructive: #d4183d;
+            --destructive-foreground: #ffffff;
+            --border: rgba(212, 165, 116, 0.2);
+            --input-background: #ffffff;
+            --ring: #d4a574;
+            --radius: 0.625rem;
+            --chart-1: #d4a574;
+            --chart-2: #c9975b;
+            --chart-3: #b8864a;
+            --chart-4: #f2e6d3;
+            --chart-5: #8b7355;
+            --font-weight-medium: 500;
+            --font-weight-normal: 400;
+        }
+
+        body {
+            background-color: var(--background);
+            color: var(--foreground);
+            overflow-x: hidden;
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 1rem;
+            left: 1rem;
+            right: 1rem;
+            z-index: 1000;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 1rem;
+            backdrop-filter: blur(20px);
+            background: rgba(255, 255, 255, 0.95);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 4rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            flex-shrink: 0;
+            margin-right: 2rem;
+        }
+
+        .logo h1 {
+            font-size: 1.75rem;
+            color: var(--primary);
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+        }
+
+        nav {
+            display: none;
+        }
+
+        @media (min-width: 768px) {
+            nav {
+                display: flex;
+                align-items: center;
+                gap: 2rem;
+                flex: 1;
+            }
+        }
+
+        .nav-link {
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            font-size: 0.95rem;
+            letter-spacing: -0.01em;
+            position: relative;
+            padding: 0.5rem 0;
+            color: var(--foreground);
+        }
+
+        .nav-link:hover {
+            color: var(--primary);
+            transform: translateY(-1px);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 2px;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .nav-link.active::after {
+            width: 100%;
+            background: var(--primary);
+        }
+
+        .search-container {
+            display: none;
+            align-items: center;
+            max-width: 24rem;
+            margin: 0 1.5rem;
+        }
+
+        @media (min-width: 1024px) {
+            .search-container {
+                display: flex;
+            }
+        }
+
+        .search-wrapper {
+            position: relative;
+            width: 100%;
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 0.75rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--muted-foreground);
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 0.75rem 1rem 0.75rem 2.5rem;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            color: var(--foreground);
+            background: rgba(255, 255, 255, 0.8);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.875rem;
+        }
+
+        .search-input::placeholder {
+            color: var(--muted-foreground);
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            flex-shrink: 0;
+        }
+
+        .icon-button {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            width: 2.5rem;
+            height: 2.5rem;
+            border: none;
+            background: transparent;
+            border-radius: var(--radius);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            color: var(--foreground);
+        }
+
+        @media (min-width: 768px) {
+            .icon-button {
+                display: flex;
+            }
+        }
+
+        .icon-button:hover {
+            background: var(--accent);
+            color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(212, 165, 116, 0.2);
+        }
+
+        .cart-button {
+            position: relative;
+        }
+
+        .cart-badge {
+            position: absolute;
+            top: -0.25rem;
+            right: -0.25rem;
+            background: var(--primary);
+            color: var(--primary-foreground);
+            font-size: 0.7rem;
+            border-radius: 50%;
+            width: 1.25rem;
+            height: 1.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            animation: pulse 2s infinite;
+        }
+
+        .mobile-menu-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 2.5rem;
+            height: 2.5rem;
+            border: none;
+            background: transparent;
+            border-radius: var(--radius);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            color: var(--foreground);
+        }
+
+        @media (min-width: 768px) {
+            .mobile-menu-button {
+                display: none;
+            }
+        }
+
+        .mobile-menu-button:hover {
+            background: var(--accent);
+            color: var(--primary);
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+        }
+
+        /* Profile Page Styles */
+        .profile-container {
+            padding: 8rem 1rem 4rem;
+            background: var(--background);
+            min-height: 100vh;
+        }
+
+        .profile-content {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .profile-header {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            margin-bottom: 3rem;
+            background: var(--card);
+            padding: 2rem;
+            border-radius: 1.5rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--border);
+        }
+
+        .profile-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-foreground);
+            font-size: 2rem;
+            font-weight: 600;
+        }
+
+        .profile-info h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .profile-info p {
+            color: var(--muted-foreground);
+            margin-bottom: 1rem;
+        }
+
+        .profile-stats {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            color: var(--muted-foreground);
+        }
+
+        .profile-sections {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .profile-sections {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .profile-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .sidebar-item {
+            padding: 1rem 1.5rem;
+            background: var(--card);
+            border-radius: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .sidebar-item:hover {
+            border-color: var(--primary);
+            transform: translateX(5px);
+        }
+
+        .sidebar-item.active {
+            background: var(--primary);
+            color: var(--primary-foreground);
+        }
+
+        .profile-main {
+            background: var(--card);
+            border-radius: 1.5rem;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--border);
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--foreground);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .section-title i {
+            color: var(--primary);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--foreground);
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            background: var(--input-background);
+            color: var(--foreground);
+            font-family: 'Inter', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(212, 165, 116, 0.1);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--radius);
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            border: none;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.875rem;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: var(--primary-foreground);
+        }
+
+        .btn-primary:hover {
+            background: var(--chart-2);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(212, 165, 116, 0.3);
+        }
+
+        .btn-outline {
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            background: transparent;
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: var(--primary-foreground);
+            transform: translateY(-2px);
+        }
+
+        .messages {
+            margin-bottom: 2rem;
+        }
+
+        .alert {
+            padding: 1rem;
+            border-radius: var(--radius);
+            margin-bottom: 1rem;
+            border: 1px solid transparent;
+        }
+
+        .alert-success {
+            background: #d4edda;
+            color: #155724;
+            border-color: #c3e6cb;
+        }
+
+        .alert-error {
+            background: #f8d7da;
+            color: #721c24;
+            border-color: #f5c6cb;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 3rem 2rem;
+            color: var(--muted-foreground);
+        }
+
+        .empty-state i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--muted-foreground);
+        }
+
+        /* Footer Styles */
+        .footer {
+            background: var(--foreground);
+            color: white;
+            padding: 3rem 1rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .social-media {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 3rem;
+            height: 3rem;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background: var(--primary);
+            color: var(--primary-foreground);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.875rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .profile-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .profile-stats {
+                justify-content: center;
+            }
+        }
+
+        .profile-section {
+            display: none;
+        }
+
+        .profile-section.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="header-container">
+            <div class="header-content">
+                <div class="logo">
+                   
+                </div>
+
+                <nav>
+                    <a href="{% url 'home' %}" class="nav-link">Home</a>
+                    <a href="{% url 'products:product_list' %}" class="nav-link">Perfumes</a>
+                    <a href="{% url 'products:collection_list' %}" class="nav-link">Collections</a>
+                    <a href="{% url 'products:category_list' %}" class="nav-link">Categories</a>
+                    {% if user.is_authenticated %}
+                    <a href="{% url 'orders:order_history' %}" class="nav-link">My Orders</a>
+                    {% endif %}
+                    <a href="#" class="nav-link">Contact</a>
+                </nav>
+
+                <div class="search-container">
+                    <div class="search-wrapper">
+                        <i class="fas fa-search search-icon"></i>
+                        <form method="get" action="{% url 'products:product_list' %}">
+                            <input type="search" name="q" placeholder="Search fragrances..." class="search-input">
+                        </form>
+                    </div>
+                </div>
+
+                <div class="header-actions">
+                    {% if user.is_authenticated %}
+                    <a href="{% url 'accounts:profile' %}" class="icon-button">
+                        <i class="fas fa-user"></i>
+                    </a>
+                    {% else %}
+                    <a href="{% url 'accounts:login' %}" class="icon-button">
+                        <i class="fas fa-user"></i>
+                    </a>
+                    {% endif %}
+                    
+                    <a href="{% url 'accounts:wishlist' %}" class="icon-button">
+                        <i class="fas fa-heart"></i>
+                        {% if wishlist_count > 0 %}
+                        <span class="cart-badge">{{ wishlist_count }}</span>
+                        {% endif %}
+                    </a>
+                    
+                    <a href="{% url 'orders:cart' %}" class="icon-button cart-button">
+                        <i class="fas fa-shopping-bag"></i>
+                        {% if cart_count > 0 %}
+                        <span class="cart-badge">{{ cart_count }}</span>
+                        {% endif %}
+                    </a>
+                    
+                    <button class="mobile-menu-button">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Profile Section -->
+    <section class="profile-container">
+        <div class="profile-content">
+            <!-- Messages -->
+            {% if messages %}
+            <div class="messages">
+                {% for message in messages %}
+                <div class="alert alert-{% if message.tags == 'error' %}error{% else %}success{% endif %}">
+                    {{ message }}
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+
+            <div class="profile-header">
+               
+                <div class="profile-info">
+                    <h1>
+                        {% if profile.full_name %}
+                            {{ profile.full_name }}
+                        {% else %}
+                            {{ user.first_name }} {{ user.last_name }}
+                        {% endif %}
+                    </h1>
+                    <p>{{ user.username }}</p>
+                    <div class="profile-stats">
+                        
+                        <div class="stat">
+                            <div class="stat-number">{{ wishlist_count|default:0 }}</div>
+                            <div class="stat-label">Wishlist</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number">Member since {{ user.date_joined|date:"Y" }}</div>
+                            <div class="stat-label">Loyalty</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="profile-sections">
+                <!-- Sidebar Navigation -->
+                <div class="profile-sidebar">
+                    <div class="sidebar-item active" onclick="showSection('personal-info')">
+                        <i class="fas fa-user"></i> Personal Information
+                    </div>
+                    <div class="sidebar-item" onclick="showSection('security')">
+                        <i class="fas fa-shield-alt"></i> Security
+                    </div>
+                </div>
+
+                <!-- Main Content -->
+                <div class="profile-main">
+                    <!-- Personal Information Section -->
+                    <div id="personal-info" class="profile-section active">
+                        <h2 class="section-title">
+                            <i class="fas fa-user"></i>
+                            Personal Information
+                        </h2>
+                        <form method="post">
+                            {% csrf_token %}
+                            
+                            <div class="form-group">
+                                <label class="form-label">Email</label>
+                                <input type="email" name="email" class="form-input" 
+                                       value="{{ user.email|default:'' }}" 
+                                       placeholder="Enter your email">
+                            </div>
+                           
+                            <div class="form-group">
+                                <label class="form-label">Phone Number</label>
+                                <input type="tel" name="phone" class="form-input" 
+                                       value="{{ profile.phone|default:'' }}" 
+                                       placeholder="+420 123 456 789">
+                            </div>
+                           
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-save"></i>
+                                Save Changes
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Security Section -->
+                    <div id="security" class="profile-section">
+                        <h2 class="section-title">
+                            <i class="fas fa-shield-alt"></i>
+                            Security
+                        </h2>
+                        <form method="post" action="{% url 'accounts:logout' %}">
+                            {% csrf_token %}
+                           
+                            <div style="margin-top: 2rem;">
+                                <button type="submit" class="btn btn-outline" style="background: var(--destructive); color: white; border-color: var(--destructive);">
+                                    <i class="fas fa-sign-out-alt"></i>
+                                    Logout
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="social-media">
+                <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-pinterest"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-tiktok"></i></a>
+            </div>
+            <p class="copyright">&copy; 2024 Golden Fragrance. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Show/hide profile sections
+        function showSection(sectionId) {
+            // Hide all sections
+            document.querySelectorAll('.profile-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Show selected section
+            document.getElementById(sectionId).classList.add('active');
+            
+            // Update sidebar active state
+            document.querySelectorAll('.sidebar-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            event.currentTarget.classList.add('active');
+        }
+
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile menu functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuButton = document.querySelector('.mobile-menu-button');
+            const nav = document.querySelector('nav');
+            
+            mobileMenuButton.addEventListener('click', function() {
+                nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
+                if (nav.style.display === 'flex') {
+                    nav.style.flexDirection = 'column';
+                    nav.style.position = 'absolute';
+                    nav.style.top = '100%';
+                    nav.style.left = '0';
+                    nav.style.right = '0';
+                    nav.style.background = 'var(--card)';
+                    nav.style.padding = '1rem';
+                    nav.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.1)';
+                    nav.style.borderRadius = '1rem';
+                    nav.style.margin = '0 1rem';
+                    nav.style.gap = '1rem';
+                }
+            });
+
+            // Auto-hide messages after 5 seconds
+            setTimeout(function() {
+                const messages = document.querySelector('.messages');
+                if (messages) {
+                    messages.style.opacity = '0';
+                    messages.style.transition = 'opacity 0.5s ease';
+                    setTimeout(() => messages.remove(), 500);
+                }
+            }, 5000);
+        });
+    </script>
+</body>
+</html>
