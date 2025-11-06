@@ -5,7 +5,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'sk_test_51SEr5IEJ1eApDxY43f8kYVhd5vtojpS9CwvD0kySMfcZ72IpB0ed17hrkDB8iT7EC2Np6vCiC5yiKB4h7pguwubz00q8RDmIQB'
 DEBUG = True
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+        'nasma-perfume-e-shop.onrender.com',
+]
 
 INSTALLED_APPS = [
     'django.contrib.admin',
