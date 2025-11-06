@@ -10,7 +10,7 @@ from django.conf import settings
 from products.models import Product
 from .models import Order, OrderItem
 
-
+stripe.api_key = settings.STRIPE_SECRET_KEY
 
 def get_cart_data(request):
     cart = request.session.get('cart', {})
@@ -216,7 +216,7 @@ def checkout_view(request):
         'final_total': final_total,
         'cart_count': cart_count,
         'profile': profile,
-        
+        'stripe_publishable_key': settings.STRIPE_PUBLISHABLE_KEY
     }
     return render(request, 'orders/checkout.html', context)
 
@@ -278,7 +278,7 @@ def stripe_webhook(request):
 
     try:
         event = stripe.Webhook.construct_event(
-            payload, sig_header
+            payload, sig_header, settings.STRIPE_WEBHOOK_SECRET
         )
     except ValueError as e:
         # Invalid payload

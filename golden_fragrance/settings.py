@@ -3,7 +3,7 @@ from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
+SECRET_KEY = 'sk_test_51SEr5IEJ1eApDxY43f8kYVhd5vtojpS9CwvD0kySMfcZ72IpB0ed17hrkDB8iT7EC2Np6vCiC5yiKB4h7pguwubz00q8RDmIQB'
 DEBUG = True
 ALLOWED_HOSTS = []
 
@@ -64,6 +64,11 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+STRIPE_PUBLISHABLE_KEY = os.environ.get('STRIPE_PUBLISHABLE_KEY', 'pk_test_51SEr5IEJ1eApDxY4p1oyyyeosibB4klGqw1wdyrcnwGQeeMKqWqlUU4zgX1mqs7F1R8xiMmnbbOMhp37CbyEzOjq00REd9rORs')
+STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY', 'sk_test_51SEr5IEJ1eApDxY43f8kYVhd5vtojpS9CwvD0kySMfcZ72IpB0ed17hrkDB8iT7EC2Np6vCiC5yiKB4h7pguwubz00q8RDmIQB')
+STRIPE_WEBHOOK_SECRET = os.environ.get('STRIPE_WEBHOOK_SECRET', 'whsec_your_webhook_secret')
+
 
 # settings.py
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
