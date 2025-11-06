@@ -1,6 +1,5 @@
 {% load static %}
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -138,7 +137,14 @@
             display: flex;
             align-items: center;
             flex-shrink: 0;
-            margin-right: 2rem;
+            margin-right: 1rem;
+            margin-left: -100px;
+            margin-top: -5px;
+        }
+
+        .logo-image {
+            height: 40px;
+            width: auto;
         }
 
         .logo h1 {
@@ -398,6 +404,109 @@
             color: var(--primary);
         }
 
+        /* Mobile Menu Styles - Fixed */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100vh;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(30px);
+            z-index: 2000;
+            transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            padding: 2rem;
+        }
+
+        .mobile-menu.active {
+            left: 0;
+        }
+
+        .mobile-menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .mobile-menu-close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--foreground);
+            cursor: pointer;
+            width: 2.5rem;
+            height: 2.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: var(--radius);
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu-close:hover {
+            background: var(--accent);
+        }
+
+        .mobile-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .mobile-nav-link {
+            padding: 1rem 0;
+            text-decoration: none;
+            color: var(--foreground);
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            font-size: 1.125rem;
+            border-bottom: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .mobile-nav-link:hover,
+        .mobile-nav-link.active {
+            color: var(--primary);
+            transform: translateX(10px);
+        }
+
+        .mobile-menu-actions {
+            margin-top: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .mobile-search {
+            position: relative;
+            margin-bottom: 1rem;
+        }
+
+        .mobile-search-input {
+            width: 100%;
+            padding: 1rem 1rem 1rem 3rem;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            background: var(--input-background);
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+        }
+
+        .mobile-search-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--muted-foreground);
+        }
+
         /* Hero Section */
         .hero {
             position: relative;
@@ -449,7 +558,6 @@
             transition: opacity 1s ease, visibility 1s ease;
             z-index: -1;
             background: linear-gradient(135deg, rgba(90, 90, 90, 0.4) 0%, rgba(95, 95, 95, 0.6) 100%);
-
         }
 
         .hero-slideshow.active {
@@ -457,11 +565,10 @@
             visibility: visible;
             z-index: 0;
             background: linear-gradient(
-        135deg, 
-        rgba(0, 0, 0, 0.4) 0%, 
-        rgba(0, 0, 0, 0.6) 100%
-    );
-            
+                135deg, 
+                rgba(0, 0, 0, 0.4) 0%, 
+                rgba(0, 0, 0, 0.6) 100%
+            );
         }
 
         .slideshow-container {
@@ -470,10 +577,10 @@
             height: 100%;
             overflow: hidden;
             background: linear-gradient(
-        135deg, 
-        rgba(0, 0, 0, 0.4) 0%, 
-        rgba(0, 0, 0, 0.6) 100%
-    );
+                135deg, 
+                rgba(0, 0, 0, 0.4) 0%, 
+                rgba(0, 0, 0, 0.6) 100%
+            );
         }
 
         .slide {
@@ -484,7 +591,6 @@
             height: 100%;
             opacity: 0;
             transition: opacity 1s ease;
-            
         }
 
         .slide.active {
@@ -497,40 +603,41 @@
             object-fit: cover;
             filter: brightness(0.4); 
         }
-/* Slideshow Controls - Left Side Positioning */
-.slideshow-controls {
-    position: absolute !important;
-    bottom: 120px !important;
-    left: 2rem !important;
-    right: auto !important;
-    transform: none !important;
-    display: flex !important;
-    align-items: center !important;
-    gap: 1.5rem !important;
-    background: rgba(255, 255, 255, 0.2) !important;
-    backdrop-filter: blur(20px) !important;
-    padding: 0.75rem 1.5rem !important;
-    border-radius: 2rem !important;
-    border: 1px solid rgba(255, 255, 255, 0.3) !important;
-    z-index: 20 !important;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3) !important;
-}
 
-.slideshow-nav {
-    background: rgba(255, 255, 255, 0.3) !important;
-    border: none !important;
-    color: white !important;
-    width: 2.5rem !important;
-    height: 2.5rem !important;
-    border-radius: 50% !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    cursor: pointer !important;
-    transition: all 0.3s ease !important;
-    font-size: 1rem !important;
-    margin-top: 0 !important;
-}
+        /* Slideshow Controls - Left Side Positioning */
+        .slideshow-controls {
+            position: absolute !important;
+            bottom: 120px !important;
+            left: 2rem !important;
+            right: auto !important;
+            transform: none !important;
+            display: flex !important;
+            align-items: center !important;
+            gap: 1.5rem !important;
+            background: rgba(255, 255, 255, 0.2) !important;
+            backdrop-filter: blur(20px) !important;
+            padding: 0.75rem 1.5rem !important;
+            border-radius: 2rem !important;
+            border: 1px solid rgba(255, 255, 255, 0.3) !important;
+            z-index: 20 !important;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3) !important;
+        }
+
+        .slideshow-nav {
+            background: rgba(255, 255, 255, 0.3) !important;
+            border: none !important;
+            color: white !important;
+            width: 2.5rem !important;
+            height: 2.5rem !important;
+            border-radius: 50% !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            cursor: pointer !important;
+            transition: all 0.3s ease !important;
+            font-size: 1rem !important;
+            margin-top: 0 !important;
+        }
 
         .slideshow-nav:hover {
             background: rgba(255, 255, 255, 0.2);
@@ -840,16 +947,12 @@
             animation: floatIn 1s ease-out 3.3s forwards;
         }
 
- 
-
-.hero-slideshow.active {
-    opacity: 1;
-    visibility: visible;
-    z-index: 2; 
-                background: linear-gradient(135deg, rgba(90, 90, 90, 0.4) 0%, rgba(95, 95, 95, 0.6) 100%);/* Increased z-index to be above hero content */
-}
-
-
+        .hero-slideshow.active {
+            opacity: 1;
+            visibility: visible;
+            z-index: 2;
+            background: linear-gradient(135deg, rgba(90, 90, 90, 0.4) 0%, rgba(95, 95, 95, 0.6) 100%);
+        }
 
         /* Hero Layout with Left, Center, Right Sections */
         .hero-content {
@@ -863,28 +966,30 @@
             margin: 0 auto;
             z-index: 10;
         }
-.video-skip-btn {
-    position: absolute;
-    bottom: 180px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    color: white;
-    padding: 0.75rem 1.5rem;
-    border-radius: 2rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    z-index: 15;
-    font-family: 'Inter', sans-serif;
-    font-weight: 500;
-}
 
-.video-skip-btn:hover {
-    background: rgba(255, 255, 255, 0.3);
-    transform: translateX(-50%) translateY(-2px);
-}
+        .video-skip-btn {
+            position: absolute;
+            bottom: 180px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 15;
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+        }
+
+        .video-skip-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateX(-50%) translateY(-2px);
+        }
+
         /* Left Side Styles */
         .hero-left {
             display: flex;
@@ -937,6 +1042,16 @@
 
         .logo-main {
             margin-bottom: 3rem;
+            width: 100%;
+            margin-right: 320px;
+            margin-left: 0px;
+            transform: scale(1.5);
+            transform-origin: left center;
+        }
+
+        .hero-logo {
+            max-width: 300px;
+            height: auto;
         }
 
         .logo-main h1 {
@@ -1613,110 +1728,300 @@
             }
         }
 
-        /* Responsive Design */
-        @media (max-width: 1024px) {
-            .hero-content {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-                text-align: center;
-            }
-            
-            .hero-left, .hero-right {
-                align-items: center;
-            }
-            
-            .tagline-text {
-                writing-mode: horizontal-tb;
-                transform: none;
-            }
-            
-            .hero-divider {
-                display: none;
-            }
-            
-            .hero-bottom-bar {
-                flex-direction: column;
-                gap: 1rem;
-                padding: 1rem 2rem;
+        /* Mobile Header Actions */
+        @media (max-width: 767px) {
+            .header-actions {
+                gap: 0.5rem;
             }
 
-            .products-grid {
-                grid-template-columns: repeat(3, 1fr);
-                width: 100%;
+            .icon-button {
+                display: flex !important;
+                width: 2.25rem;
+                height: 2.25rem;
+            }
+
+            .logo {
+                margin-left: 0;
+            }
+
+            .logo-image {
+                max-height: 30px;
             }
         }
 
+        /* Enhanced Mobile Responsiveness */
         @media (max-width: 768px) {
-            .logo-main h1 {
-                font-size: 2.5rem;
+            /* Header fixes */
+            header {
+                top: 0.5rem;
+                left: 0.5rem;
+                right: 0.5rem;
             }
-            
-            .essence-text {
-                font-size: 1.75rem;
-            }
-            
-            .passion-main {
-                font-size: 2.5rem;
-            }
-            
-            .hero-content {
+
+            .header-container {
                 padding: 0 1rem;
             }
 
-            .hero h1 {
-                font-size: 2.5rem;
+            .header-content {
+                height: 3.5rem;
+            }
+
+            /* Hero section mobile fixes */
+            .hero {
+                min-height: 100vh;
+                padding-top: 4rem;
+            }
+
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                padding: 0 1rem;
+                text-align: center;
+            }
+
+            .hero-left,
+            .hero-right {
+                align-items: center;
+                text-align: center;
+            }
+
+            .tagline-text {
+                writing-mode: horizontal-tb;
+                transform: none;
+                letter-spacing: 0.2em;
+                font-size: 1rem;
+            }
+
+            .hero-divider {
+                display: none;
+            }
+
+            .logo-main {
+                margin: 0 auto 2rem auto;
+                transform: scale(1);
+                text-align: center;
+            }
+
+            .logo-main h1 {
+                font-size: 2rem;
+                letter-spacing: 0.1em;
+            }
+
+            .hero-main-text {
+                margin: 1rem 0;
+            }
+
+            .essence-text {
+                font-size: 1.5rem;
+                letter-spacing: 0.3em;
+            }
+
+            .passion-text {
+                font-size: 1rem;
+                letter-spacing: 0.2em;
+            }
+
+            .passion-main {
+                font-size: 2rem;
+                letter-spacing: 0.1em;
             }
 
             .hero-actions {
                 flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+                margin-bottom: 2rem;
             }
 
-            .hero-stats {
-                justify-content: center;
-                gap: 2rem;
+            .btn {
+                padding: 0.875rem 2rem;
+                font-size: 0.9rem;
+                width: 100%;
+                max-width: 200px;
             }
 
-            .section-title {
-                font-size: 2rem;
-            }
-
-            .section-subtitle {
-                font-size: 1.125rem;
-            }
-
-            .social-media {
+            /* Contact info mobile */
+            .contact-info {
                 gap: 1rem;
             }
 
-            .social-link {
-                width: 2.5rem;
-                height: 2.5rem;
+            .contact-item {
+                align-items: center;
+                text-align: center;
             }
 
+            .cta-section {
+                align-items: center;
+                gap: 1.5rem;
+            }
+
+            /* Bottom stats bar mobile */
+            .hero-bottom-bar {
+                bottom: 1rem;
+                left: 1rem;
+                right: 1rem;
+                transform: none;
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1rem 1.5rem;
+            }
+
+            .hero-bottom-bar .stat-item {
+                text-align: center;
+            }
+
+            .hero-bottom-bar .stat-number {
+                font-size: 1.25rem;
+            }
+
+            .hero-bottom-bar .stat-label {
+                font-size: 0.7rem;
+            }
+
+            /* Slideshow controls mobile */
+            .slideshow-controls {
+                bottom: 80px !important;
+                left: 50% !important;
+                transform: translateX(-50%) !important;
+                right: auto !important;
+                padding: 0.5rem 1rem !important;
+            }
+
+            .video-skip-btn {
+                bottom: 140px;
+                padding: 0.5rem 1rem;
+                font-size: 0.875rem;
+            }
+
+            /* Products grid mobile */
             .products-grid {
                 grid-template-columns: 1fr;
                 gap: 1.5rem;
                 width: 100%;
+                margin-bottom: 2rem;
             }
 
+            .product-card {
+                margin: 0 auto;
+                max-width: 300px;
+            }
+
+            /* Categories grid mobile */
             .categories-grid {
                 grid-template-columns: 1fr;
                 gap: 1rem;
                 width: 100%;
             }
 
-         
+            .category-card {
+                max-width: 100%;
+            }
+
+            /* Section headers mobile */
+            .section-title {
+                font-size: 1.75rem;
+            }
+
+            .section-subtitle {
+                font-size: 1rem;
+            }
+
+            /* Footer mobile */
+            .social-media {
+                gap: 0.75rem;
+            }
+
+            .social-link {
+                width: 2.25rem;
+                height: 2.25rem;
+            }
+
+            .social-link i {
+                font-size: 1rem;
+            }
         }
 
+        /* Small mobile devices */
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .logo-main h1 {
+                font-size: 1.75rem;
+            }
+
+            .essence-text {
+                font-size: 1.25rem;
+            }
+
+            .passion-main {
+                font-size: 1.75rem;
+            }
+
+            .hero-bottom-bar {
+                padding: 0.75rem 1rem;
+            }
+
+            .hero-bottom-bar .stat-number {
+                font-size: 1.125rem;
+            }
+
+            .products-grid {
+                gap: 1rem;
+            }
+
+            .product-info {
+                padding: 1rem;
+            }
+
+            .product-name {
+                font-size: 1.125rem;
+            }
+
+            .current-price {
+                font-size: 1.25rem;
+            }
+        }
+
+        /* Tablet responsive fixes */
         @media (min-width: 769px) and (max-width: 1024px) {
             .products-grid {
                 grid-template-columns: repeat(2, 1fr);
                 width: 100%;
             }
-            
+
             .categories-grid {
                 grid-template-columns: repeat(2, 1fr);
                 width: 100%;
+            }
+
+            .hero-content {
+                grid-template-columns: 1fr 2fr;
+                gap: 2rem;
+            }
+
+            .hero-right {
+                grid-column: 1 / -1;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                margin-top: 2rem;
+            }
+
+            .hero-divider.vertical {
+                display: none;
+            }
+        }
+
+        /* Prevent horizontal scroll on mobile */
+        @media (max-width: 768px) {
+            body {
+                overflow-x: hidden;
+            }
+            
+            .container {
+                padding: 0 1rem;
             }
         }
 
@@ -1739,12 +2044,11 @@
         <div class="header-container">
             <div class="header-content">
                 <!-- Logo -->
-               
-              <div class="logo">
-                <a >
-                    <img src="{% static 'videos/images/NESMA_OK-1.pdf' %}" alt="Golden Fragrance" class="logo-image">
-                </a>
-            </div>
+                <div class="logo">
+                    <a>
+                        <img src="{% static 'videos/images/NASMA1.png' %}" alt="Golden Fragrance" class="logo-image">
+                    </a>
+                </div>
                 <!-- Desktop Navigation -->
                 <nav>
                     <a href="{% url 'home' %}" class="nav-link active">Home</a>
@@ -1781,7 +2085,7 @@
                     </a>
                     {% endif %}
                     
-                     <a href="{% url 'accounts:wishlist' %}" class="icon-button">
+                    <a href="{% url 'accounts:wishlist' %}" class="icon-button">
                         <i class="fas fa-heart"></i>
                         {% if wishlist_count > 0 %}
                         <span class="cart-badge">{{ wishlist_count }}</span>
@@ -1790,10 +2094,10 @@
                     
                     <a href="{% url 'orders:cart' %}" class="icon-button cart-button">
                         <i class="fas fa-shopping-bag"></i>
-                        {%if cart_count > 0%}
+                        {% if cart_count > 0 %}
                         <span class="cart-badge">{{ cart_count }}</span>
+                        {% endif %}
                         <span class="sr-only">Shopping cart</span>
-                    {%endif%}
                     </a>
                     
                     <button class="mobile-menu-button">
@@ -1806,146 +2110,143 @@
     </header>
 
     <!-- Hero Section -->
-   <!-- Hero Section -->
-<section class="hero">
-    <div class="hero-background">
-        <!-- Video that plays first -->
-        <video autoplay muted loop playsinline class="hero-video" id="hero-video">
-            <source src="{% static 'videos/from3.mp4' %}" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
+    <section class="hero">
+        <div class="hero-background">
+            <!-- Video that plays first -->
+            <video autoplay muted loop playsinline class="hero-video" id="hero-video">
+                <source src="{% static 'videos/from3.mp4' %}" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            
+            <!-- Image slideshow that appears after video -->
+            <div class="hero-slideshow" id="hero-slideshow">
+                <div class="slideshow-container">
+                    <div class="slide">
+                        <img src="{% static 'videos/images/pp2.jpg' %}" alt="Premium Fragrance Collection">
+                    </div>
+                    <div class="slide">
+                        <img src="{% static 'videos/images/pp3.jpg' %}" alt="Elegant Perfume Bottles">
+                    </div>
+                    <div class="slide">
+                        <img src="{% static 'videos/images/pp4.jpg' %}"  alt="Luxury Scent Experience">
+                    </div>
+                    <div class="slide">
+                        <img src="{% static 'videos/images/pp5.jpg' %}" alt="Signature Fragrances">
+                    </div>
+                    <div class="slide">
+                        <img src="{% static 'videos/images/pp6.jpg' %}" alt="Signature Fragrances">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="hero-overlay"></div>
+        </div>
         
-        <!-- Image slideshow that appears after video -->
-        <div class="hero-slideshow" id="hero-slideshow">
-            <div class="slideshow-container">
-              
-                <div class="slide">
-                    <img src="{% static 'videos/images/pp2.jpg' %}" alt="Premium Fragrance Collection">
+        <!-- Slideshow Controls - Moved outside so they're always visible -->
+        <div class="slideshow-controls">
+            <button class="slideshow-nav prev" id="prev-slide">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <div class="slideshow-dots">
+                <button class="dot active" data-index="0"></button>
+                <button class="dot" data-index="1"></button>
+                <button class="dot" data-index="2"></button>
+                <button class="dot" data-index="3"></button>
+                <button class="dot" data-index="4"></button>
+            </div>
+            <button class="slideshow-nav next" id="next-slide">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+
+        <!-- Skip Video Button -->
+        <button class="video-skip-btn" id="skip-video">
+            Skip Video <i class="fas fa-forward" style="margin-left: 0.5rem;"></i>
+        </button>
+        
+        <!-- Rest of your hero content -->
+        <ul class="circles">
+            <li></li><li></li><li></li><li></li><li></li>
+            <li></li><li></li><li></li><li></li><li></li>
+        </ul>
+        
+        <div class="hero-content">
+            <!-- Your existing hero content here -->
+            <div class="hero-left">
+                <div class="hero-tagline">
+                    <span class="tagline-text">Timeless</span>
+                    <span class="tagline-text">Elegance</span>
+                    <span class="tagline-text">Perfected</span>
                 </div>
-                <div class="slide">
-                    <img src="{% static 'videos/images/pp3.jpg' %}" alt="Elegant Perfume Bottles">
+                <div class="hero-divider"></div>
+            </div>
+
+            <div class="hero-center">
+                <div class="logo-main">
+                    <img src="{% static 'videos/images/NASMA.png' %}" alt="Golden Fragrance" class="hero-logo">
                 </div>
-                <div class="slide">
-                    <img src="{% static 'videos/images/pp4.jpg' %}"  alt="Luxury Scent Experience">
+                
+                <div class="hero-main-text">
+                    <h2 class="essence-text">ESSENCE</h2>
+                    <h3 class="passion-text">IGNITES</h3>
+                    <h2 class="passion-main">PASSION</h2>
                 </div>
-                <div class="slide">
-                    <img src="{% static 'videos/images/pp5.jpg' %}" alt="Signature Fragrances">
+
+                <div class="hero-actions">
+                    <a href="{% url 'products:product_list' %}" class="btn btn-primary">
+                        Discover Now
+                        <i class="fas fa-chevron-right" style="margin-left: 0.5rem;"></i>
+                    </a>
                 </div>
-                <div class="slide">
-                    <img src="{% static 'videos/images/pp6.jpg' %}" alt="Signature Fragrances">
+            </div>
+
+            <div class="hero-right">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <span class="contact-label">Collection 2024</span>
+                        <span class="contact-value">Limited Edition</span>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-label">Exclusive</span>
+                        <span class="contact-value">Signature Scents</span>
+                    </div>
+                </div>
+                
+                <div class="hero-divider vertical"></div>
+                
+                <div class="cta-section">
+                    <a href="{% url 'products:product_list' %}" class="cta-button">
+                        <span>Shop</span>
+                        <span>Collection</span>
+                    </a>
+                    <div class="social-links">
+                        <a href="#" class="social-link">IG</a>
+                        <a href="#" class="social-link">FB</a>
+                        <a href="#" class="social-link">TW</a>
+                    </div>
                 </div>
             </div>
         </div>
         
-        <div class="hero-overlay"></div>
-    </div>
-    
-    <!-- Slideshow Controls - Moved outside so they're always visible -->
-    <div class="slideshow-controls">
-        <button class="slideshow-nav prev" id="prev-slide">
-            <i class="fas fa-chevron-left"></i>
-        </button>
-        <div class="slideshow-dots">
-            <button class="dot active" data-index="0"></button>
-            <button class="dot" data-index="1"></button>
-            <button class="dot" data-index="2"></button>
-            <button class="dot" data-index="3"></button>
-            <button class="dot" data-index="4"></button>
-        </div>
-        <button class="slideshow-nav next" id="next-slide">
-            <i class="fas fa-chevron-right"></i>
-        </button>
-    </div>
-
-    <!-- Skip Video Button -->
-    <button class="video-skip-btn" id="skip-video">
-        Skip Video <i class="fas fa-forward" style="margin-left: 0.5rem;"></i>
-    </button>
-    
-    <!-- Rest of your hero content -->
-    <ul class="circles">
-        <li></li><li></li><li></li><li></li><li></li>
-        <li></li><li></li><li></li><li></li><li></li>
-    </ul>
-    
-    <div class="hero-content">
-        <!-- Your existing hero content here -->
-        <div class="hero-left">
-            <div class="hero-tagline">
-                <span class="tagline-text">Timeless</span>
-                <span class="tagline-text">Elegance</span>
-                <span class="tagline-text">Perfected</span>
+        <!-- Bottom Stats Bar -->
+        <div class="hero-bottom-bar">
+            <div class="stat-item">
+                <div class="stat-number">{{ total_customers }}+</div>
+                <div class="stat-label">Satisfied Clients</div>
             </div>
-            <div class="hero-divider"></div>
-        </div>
-
-        <div class="hero-center">
-            <div class="logo-main">
-                <img src="{% static 'videos/images/.png' %}" alt="Golden Fragrance" class="hero-logo">
-              
+            <div class="stat-item">
+                <div class="stat-number">{{ total_products }}+</div>
+                <div class="stat-label">Luxury Scents</div>
             </div>
-            
-            <div class="hero-main-text">
-                <h2 class="essence-text">ESSENCE</h2>
-                <h3 class="passion-text">IGNITES</h3>
-                <h2 class="passion-main">PASSION</h2>
-            </div>
-
-            <div class="hero-actions">
-                <a href="{% url 'products:product_list' %}" class="btn btn-primary">
-                    Discover Now
-                    <i class="fas fa-chevron-right" style="margin-left: 0.5rem;"></i>
-                </a>
+            <div class="stat-item">
+                <div class="stat-number">24/7</div>
+                <div class="stat-label">Expert Support</div>
             </div>
         </div>
 
-        <div class="hero-right">
-            <div class="contact-info">
-                <div class="contact-item">
-                    <span class="contact-label">Collection 2024</span>
-                    <span class="contact-value">Limited Edition</span>
-                </div>
-                <div class="contact-item">
-                    <span class="contact-label">Exclusive</span>
-                    <span class="contact-value">Signature Scents</span>
-                </div>
-            </div>
-            
-            <div class="hero-divider vertical"></div>
-            
-            <div class="cta-section">
-                <a href="{% url 'products:product_list' %}" class="cta-button">
-                    <span>Shop</span>
-                    <span>Collection</span>
-                </a>
-                <div class="social-links">
-                    <a href="#" class="social-link">IG</a>
-                    <a href="#" class="social-link">FB</a>
-                    <a href="#" class="social-link">TW</a>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <!-- Bottom Stats Bar -->
-    <div class="hero-bottom-bar">
-        <div class="stat-item">
-            <div class="stat-number">{{ total_customers }}+</div>
-            <div class="stat-label">Satisfied Clients</div>
-        </div>
-        <div class="stat-item">
-            <div class="stat-number">{{ total_products }}+</div>
-            <div class="stat-label">Luxury Scents</div>
-        </div>
-        <div class="stat-item">
-            <div class="stat-number">24/7</div>
-            <div class="stat-label">Expert Support</div>
-        </div>
-    </div>
-
-    <div class="floating-element floating-1"></div>
-    <div class="floating-element floating-2"></div>
-</section>
+        <div class="floating-element floating-1"></div>
+        <div class="floating-element floating-2"></div>
+    </section>
 
     <!-- Featured Products -->
     <section class="featured-products">
@@ -2055,295 +2356,386 @@
         </div>
     </footer>
 
-   <script>
-     // Simple and robust slideshow functionality
-    document.addEventListener('DOMContentLoaded', function() {
-        console.log('Initializing hero section...');
-        
-        // Get elements
-        const video = document.getElementById('hero-video');
-        const slideshow = document.getElementById('hero-slideshow');
-        const skipBtn = document.getElementById('skip-video');
-        const prevBtn = document.getElementById('prev-slide');
-        const nextBtn = document.getElementById('next-slide');
-        const dots = document.querySelectorAll('.dot');
-        const slides = document.querySelectorAll('.slide');
-        
-        let currentSlide = 0;
-        let slideInterval;
-        let slideshowActive = false;
-        
-        // Initialize slideshow (start with video)
-        initSlideshow();
-        
-        // Skip video button
-        skipBtn.addEventListener('click', function() {
-            console.log('Skip video clicked');
-            startSlideshow();
-        });
-        
-        // Video ended - start slideshow
-        if (video) {
-            video.addEventListener('ended', function() {
-                console.log('Video ended');
-                startSlideshow();
+    <script>
+        // Mobile Menu Functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuButton = document.querySelector('.mobile-menu-button');
+            const mobileMenu = document.createElement('div');
+            mobileMenu.className = 'mobile-menu';
+            
+            // Create mobile menu content
+            mobileMenu.innerHTML = `
+                <div class="mobile-menu-header">
+                    <div class="logo">
+                        <img src="{% static 'videos/images/NASMA1.png' %}" alt="Golden Fragrance" class="logo-image">
+                    </div>
+                    <button class="mobile-menu-close">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                
+                <div class="mobile-search">
+                    <i class="fas fa-search mobile-search-icon"></i>
+                    <form method="get" action="{% url 'products:product_list' %}">
+                        <input type="search" name="q" placeholder="Search fragrances..." class="mobile-search-input" value="{{ request.GET.q }}">
+                    </form>
+                </div>
+                
+                <nav class="mobile-nav">
+                    <a href="{% url 'home' %}" class="mobile-nav-link active">Home</a>
+                    <a href="{% url 'products:product_list' %}" class="mobile-nav-link">Perfumes</a>
+                    <a href="{% url 'products:collection_list' %}" class="mobile-nav-link">Collections</a>
+                    <a href="{% url 'products:category_list' %}" class="mobile-nav-link">Categories</a>
+                    {% if user.is_authenticated %}
+                    <a href="{% url 'orders:order_history' %}" class="mobile-nav-link">My Orders</a>
+                    {% endif %}
+                    <a href="#" class="mobile-nav-link">Contact</a>
+                </nav>
+                
+                <div class="mobile-menu-actions">
+                    {% if user.is_authenticated %}
+                    <a href="{% url 'accounts:profile' %}" class="mobile-nav-link">
+                        <i class="fas fa-user" style="margin-right: 0.5rem;"></i>My Account
+                    </a>
+                    {% else %}
+                    <a href="{% url 'accounts:login' %}" class="mobile-nav-link">
+                        <i class="fas fa-user" style="margin-right: 0.5rem;"></i>Login
+                    </a>
+                    {% endif %}
+                    
+                    <a href="{% url 'accounts:wishlist' %}" class="mobile-nav-link">
+                        <i class="fas fa-heart" style="margin-right: 0.5rem;"></i>Wishlist
+                        {% if wishlist_count > 0 %}<span style="margin-left: auto;">{{ wishlist_count }}</span>{% endif %}
+                    </a>
+                    
+                    <a href="{% url 'orders:cart' %}" class="mobile-nav-link">
+                        <i class="fas fa-shopping-bag" style="margin-right: 0.5rem;"></i>Shopping Bag
+                        {% if cart_count > 0 %}<span style="margin-left: auto;">{{ cart_count }}</span>{% endif %}
+                    </a>
+                </div>
+            `;
+            
+            // Add mobile menu to body
+            document.body.appendChild(mobileMenu);
+            
+            // Mobile menu toggle functionality
+            mobileMenuButton.addEventListener('click', function() {
+                mobileMenu.classList.add('active');
+                document.body.style.overflow = 'hidden'; // Prevent background scroll
             });
             
-            // If video fails to load, start slideshow after 5 seconds
-            setTimeout(() => {
-                if (!slideshowActive) {
-                    console.log('Video timeout - starting slideshow');
-                    startSlideshow();
+            // Close mobile menu
+            const closeButton = mobileMenu.querySelector('.mobile-menu-close');
+            closeButton.addEventListener('click', function() {
+                mobileMenu.classList.remove('active');
+                document.body.style.overflow = ''; // Restore scroll
+            });
+            
+            // Close menu when clicking on links
+            const mobileNavLinks = mobileMenu.querySelectorAll('.mobile-nav-link');
+            mobileNavLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    mobileMenu.classList.remove('active');
+                    document.body.style.overflow = '';
+                });
+            });
+            
+            // Close menu when clicking outside
+            mobileMenu.addEventListener('click', function(e) {
+                if (e.target === mobileMenu) {
+                    mobileMenu.classList.remove('active');
+                    document.body.style.overflow = '';
                 }
-            }, 9000);
-        } else {
-            // No video found, start slideshow immediately
-            console.log('No video found, starting slideshow immediately');
-            startSlideshow();
-        }
-        
-        // Navigation buttons
-        if (prevBtn) {
-            prevBtn.addEventListener('click', function() {
-                console.log('Previous button clicked');
-                navigateSlideshow(-1);
             });
-        }
-        
-        if (nextBtn) {
-            nextBtn.addEventListener('click', function() {
-                console.log('Next button clicked');
-                navigateSlideshow(1);
+
+            // Simple and robust slideshow functionality
+            console.log('Initializing hero section...');
+            
+            // Get elements
+            const video = document.getElementById('hero-video');
+            const slideshow = document.getElementById('hero-slideshow');
+            const skipBtn = document.getElementById('skip-video');
+            const prevBtn = document.getElementById('prev-slide');
+            const nextBtn = document.getElementById('next-slide');
+            const dots = document.querySelectorAll('.dot');
+            const slides = document.querySelectorAll('.slide');
+            
+            let currentSlide = 0;
+            let slideInterval;
+            let slideshowActive = false;
+            
+            // Initialize slideshow (start with video)
+            initSlideshow();
+            
+            // Skip video button
+            skipBtn.addEventListener('click', function() {
+                console.log('Skip video clicked');
+                startSlideshow();
             });
-        }
-        
-        // Dot navigation
-        dots.forEach((dot, index) => {
-            dot.addEventListener('click', function() {
-                console.log('Dot clicked:', index);
-                goToSlide(index);
-            });
-        });
-        
-        function initSlideshow() {
-            console.log('Initializing slideshow with', slides.length, 'slides');
             
-            // Show first slide
-            if (slides.length > 0) {
-                slides[0].classList.add('active');
-            }
-            
-            // Activate first dot
-            if (dots.length > 0) {
-                dots[0].classList.add('active');
-            }
-        }
-        
-        function startSlideshow() {
-            if (slideshowActive) return;
-            
-            console.log('Starting slideshow');
-            slideshowActive = true;
-            
-            // Hide video and show slideshow
+            // Video ended - start slideshow
             if (video) {
-                video.style.display = 'none';
-            }
-            if (slideshow) {
-                slideshow.classList.add('active');
-            }
-            
-            // Hide skip button
-            skipBtn.style.display = 'none';
-            
-            // Start automatic slides
-            startAutoSlide();
-        }
-        
-        function navigateSlideshow(direction) {
-            if (!slideshowActive) {
+                video.addEventListener('ended', function() {
+                    console.log('Video ended');
+                    startSlideshow();
+                });
+                
+                // If video fails to load, start slideshow after 5 seconds
+                setTimeout(() => {
+                    if (!slideshowActive) {
+                        console.log('Video timeout - starting slideshow');
+                        startSlideshow();
+                    }
+                }, 9000);
+            } else {
+                // No video found, start slideshow immediately
+                console.log('No video found, starting slideshow immediately');
                 startSlideshow();
             }
             
-            const newIndex = (currentSlide + direction + slides.length) % slides.length;
-            goToSlide(newIndex);
-            
-            // Restart auto slide timer
-            restartAutoSlide();
-        }
-        
-        function goToSlide(index) {
-            if (index < 0 || index >= slides.length) return;
-            
-            console.log('Going to slide:', index);
-            
-            // Remove active class from all slides and dots
-            slides.forEach(slide => slide.classList.remove('active'));
-            dots.forEach(dot => dot.classList.remove('active'));
-            
-            // Add active class to current slide and dot
-            slides[index].classList.add('active');
-            dots[index].classList.add('active');
-            
-            currentSlide = index;
-        }
-        
-        function startAutoSlide() {
-            stopAutoSlide();
-            slideInterval = setInterval(() => {
-                navigateSlideshow(1);
-            }, 8000); // Change every 4 seconds
-        }
-        
-        function stopAutoSlide() {
-            if (slideInterval) {
-                clearInterval(slideInterval);
-                slideInterval = null;
+            // Navigation buttons
+            if (prevBtn) {
+                prevBtn.addEventListener('click', function() {
+                    console.log('Previous button clicked');
+                    navigateSlideshow(-1);
+                });
             }
-        }
-        
-        function restartAutoSlide() {
-            stopAutoSlide();
-            startAutoSlide();
-        }
-        
-        // Pause on hover
-        if (slideshow) {
-            slideshow.addEventListener('mouseenter', stopAutoSlide);
-            slideshow.addEventListener('mouseleave', startAutoSlide);
-        }
-        
-        // Header scroll effect
-        window.addEventListener('scroll', function() {
-            const header = document.getElementById('header');
-            const scrolled = window.scrollY > 50;
             
-            if (scrolled) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
+            if (nextBtn) {
+                nextBtn.addEventListener('click', function() {
+                    console.log('Next button clicked');
+                    navigateSlideshow(1);
+                });
             }
-        });
-        
-        // Debug function
-        window.debugSlideshow = function() {
-            console.log('Current slide:', currentSlide);
-            console.log('Slideshow active:', slideshowActive);
-            console.log('Video:', video ? 'found' : 'not found');
-            console.log('Slides:', slides.length);
-            console.log('Dots:', dots.length);
-            startSlideshow();
-        };
-    });
-    // Your existing cart and notification functions remain the same
-    function addToCart(productId) {
-        fetch(`/orders/add-to-cart/${productId}/`, {
-            method: 'POST',
-            headers: {
-                'X-CSRFToken': getCookie('csrftoken'),
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({quantity: 1})
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                // Update cart badge
-                const cartBadge = document.querySelector('.cart-badge');
-                if (cartBadge) {
-                    cartBadge.textContent = data.cart_count;
+            
+            // Dot navigation
+            dots.forEach((dot, index) => {
+                dot.addEventListener('click', function() {
+                    console.log('Dot clicked:', index);
+                    goToSlide(index);
+                });
+            });
+            
+            function initSlideshow() {
+                console.log('Initializing slideshow with', slides.length, 'slides');
+                
+                // Show first slide
+                if (slides.length > 0) {
+                    slides[0].classList.add('active');
                 }
                 
-                // Show success message
-                showNotification('Product added to cart!', 'success');
-            } else {
-                showNotification('Error adding product to cart: ' + data.message, 'error');
+                // Activate first dot
+                if (dots.length > 0) {
+                    dots[0].classList.add('active');
+                }
             }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            showNotification('Error adding product to cart', 'error');
+            
+            function startSlideshow() {
+                if (slideshowActive) return;
+                
+                console.log('Starting slideshow');
+                slideshowActive = true;
+                
+                // Hide video and show slideshow
+                if (video) {
+                    video.style.display = 'none';
+                }
+                if (slideshow) {
+                    slideshow.classList.add('active');
+                }
+                
+                // Hide skip button
+                skipBtn.style.display = 'none';
+                
+                // Start automatic slides
+                startAutoSlide();
+            }
+            
+            function navigateSlideshow(direction) {
+                if (!slideshowActive) {
+                    startSlideshow();
+                }
+                
+                const newIndex = (currentSlide + direction + slides.length) % slides.length;
+                goToSlide(newIndex);
+                
+                // Restart auto slide timer
+                restartAutoSlide();
+            }
+            
+            function goToSlide(index) {
+                if (index < 0 || index >= slides.length) return;
+                
+                console.log('Going to slide:', index);
+                
+                // Remove active class from all slides and dots
+                slides.forEach(slide => slide.classList.remove('active'));
+                dots.forEach(dot => dot.classList.remove('active'));
+                
+                // Add active class to current slide and dot
+                slides[index].classList.add('active');
+                dots[index].classList.add('active');
+                
+                currentSlide = index;
+            }
+            
+            function startAutoSlide() {
+                stopAutoSlide();
+                slideInterval = setInterval(() => {
+                    navigateSlideshow(1);
+                }, 8000); // Change every 4 seconds
+            }
+            
+            function stopAutoSlide() {
+                if (slideInterval) {
+                    clearInterval(slideInterval);
+                    slideInterval = null;
+                }
+            }
+            
+            function restartAutoSlide() {
+                stopAutoSlide();
+                startAutoSlide();
+            }
+            
+            // Pause on hover
+            if (slideshow) {
+                slideshow.addEventListener('mouseenter', stopAutoSlide);
+                slideshow.addEventListener('mouseleave', startAutoSlide);
+            }
+            
+            // Header scroll effect
+            window.addEventListener('scroll', function() {
+                const header = document.getElementById('header');
+                const scrolled = window.scrollY > 50;
+                
+                if (scrolled) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+            
+            // Debug function
+            window.debugSlideshow = function() {
+                console.log('Current slide:', currentSlide);
+                console.log('Slideshow active:', slideshowActive);
+                console.log('Video:', video ? 'found' : 'not found');
+                console.log('Slides:', slides.length);
+                console.log('Dots:', dots.length);
+                startSlideshow();
+            };
         });
-    }
 
-    function addToWishlist(productId) {
-    fetch(`/accounts/add-to-wishlist/${productId}/`, {
-        method: 'POST',
-        headers: {
-            'X-CSRFToken': getCookie('csrftoken'),
-            'Content-Type': 'application/json',
-        },
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            showNotification('Added to wishlist!', 'success');
+        // Your existing cart and notification functions remain the same
+        function addToCart(productId) {
+            fetch(`/orders/add-to-cart/${productId}/`, {
+                method: 'POST',
+                headers: {
+                    'X-CSRFToken': getCookie('csrftoken'),
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({quantity: 1})
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Update cart badge
+                    const cartBadge = document.querySelector('.cart-badge');
+                    if (cartBadge) {
+                        cartBadge.textContent = data.cart_count;
+                    }
+                    
+                    // Show success message
+                    showNotification('Product added to cart!', 'success');
+                } else {
+                    showNotification('Error adding product to cart: ' + data.message, 'error');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                showNotification('Error adding product to cart', 'error');
+            });
         }
-    })
-    .catch(error => {
-      showNotification('did not add ', 'failed');
-    });
-}
-   
-    function getCookie(name) {
-        let cookieValue = null;
-        if (document.cookie && document.cookie !== '') {
-            const cookies = document.cookie.split(';');
-            for (let i = 0; i < cookies.length; i++) {
-                const cookie = cookies[i].trim();
-                if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                    break;
+
+        function addToWishlist(productId) {
+            fetch(`/accounts/add-to-wishlist/${productId}/`, {
+                method: 'POST',
+                headers: {
+                    'X-CSRFToken': getCookie('csrftoken'),
+                    'Content-Type': 'application/json',
+                },
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    showNotification('Added to wishlist!', 'success');
+                }
+            })
+            .catch(error => {
+                showNotification('did not add ', 'failed');
+            });
+        }
+        
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
                 }
             }
+            return cookieValue;
         }
-        return cookieValue;
-    }
 
-    function showNotification(message, type = 'info') {
-        // Create notification element
-        const notification = document.createElement('div');
-        notification.style.cssText = `
-            position: fixed;
-            top: 100px;
-            right: 20px;
-            padding: 1rem 1.5rem;
-            border-radius: 0.5rem;
-            color: white;
-            font-weight: 500;
-            z-index: 10000;
-            max-width: 300px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-            transform: translateX(400px);
-            transition: transform 0.3s ease;
-        `;
-        
-        if (type === 'success') {
-            notification.style.background = 'var(--primary)';
-        } else if (type === 'error') {
-            notification.style.background = 'var(--destructive)';
-        } else {
-            notification.style.background = 'var(--muted-foreground)';
-        }
-        
-        notification.textContent = message;
-        document.body.appendChild(notification);
-        
-        // Animate in
-        setTimeout(() => {
-            notification.style.transform = 'translateX(0)';
-        }, 100);
-        
-        // Remove after 3 seconds
-        setTimeout(() => {
-            notification.style.transform = 'translateX(400px)';
+        function showNotification(message, type = 'info') {
+            // Create notification element
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 100px;
+                right: 20px;
+                padding: 1rem 1.5rem;
+                border-radius: 0.5rem;
+                color: white;
+                font-weight: 500;
+                z-index: 10000;
+                max-width: 300px;
+                box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+                transform: translateX(400px);
+                transition: transform 0.3s ease;
+            `;
+            
+            if (type === 'success') {
+                notification.style.background = 'var(--primary)';
+            } else if (type === 'error') {
+                notification.style.background = 'var(--destructive)';
+            } else {
+                notification.style.background = 'var(--muted-foreground)';
+            }
+            
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            
+            // Animate in
             setTimeout(() => {
-                if (document.body.contains(notification)) {
-                    document.body.removeChild(notification);
-                }
-            }, 300);
-        }, 3000);
-    }
-</script>
+                notification.style.transform = 'translateX(0)';
+            }, 100);
+            
+            // Remove after 3 seconds
+            setTimeout(() => {
+                notification.style.transform = 'translateX(400px)';
+                setTimeout(() => {
+                    if (document.body.contains(notification)) {
+                        document.body.removeChild(notification);
+                    }
+                }, 300);
+            }, 3000);
+        }
+    </script>
 </body>
 </html>
