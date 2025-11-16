@@ -1,11 +1,11 @@
-{% load static %}
+{% load static i18n %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="/static/videos/images/NASMA.png">
-    <title>Checkout | Golden Fragrance</title>
+    <title>{% trans "Checkout" %} | Golden Fragrance</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -1005,19 +1005,19 @@
                 </div>
 
                 <nav>
-                    <a href="{% url 'home' %}" class="nav-link">Home</a>
-                    <a href="{% url 'products:product_list' %}" class="nav-link">Perfumes</a>
-                    <a href="{% url 'products:collection_list' %}" class="nav-link">Collections</a>
-                    <a href="{% url 'products:category_list' %}" class="nav-link">Categories</a>
-                    <a href="{% url 'orders:order_history' %}" class="nav-link">Orders</a>
-                    <a href="#" class="nav-link">Contact</a>
+                    <a href="{% url 'home' %}" class="nav-link">{% trans "Home" %}</a>
+                    <a href="{% url 'products:product_list' %}" class="nav-link">{% trans "Perfumes" %}</a>
+                    <a href="{% url 'products:collection_list' %}" class="nav-link">{% trans "Collections" %}</a>
+                    <a href="{% url 'products:category_list' %}" class="nav-link">{% trans "Categories" %}</a>
+                    <a href="{% url 'orders:order_history' %}" class="nav-link">{% trans "Orders" %}</a>
+                    <a href="#" class="nav-link">{% trans "Contact" %}</a>
                 </nav>
 
                 <div class="search-container">
                     <div class="search-wrapper">
                         <i class="fas fa-search search-icon"></i>
                         <form method="get" action="{% url 'products:product_list' %}">
-                            <input type="search" name="q" placeholder="Search fragrances..." class="search-input">
+                            <input type="search" name="q" placeholder="{% trans 'Search fragrances...' %}" class="search-input">
                         </form>
                     </div>
                 </div>
@@ -1081,7 +1081,7 @@
             <div class="mobile-search-wrapper">
                 <i class="fas fa-search mobile-search-icon"></i>
                 <form method="get" action="{% url 'products:product_list' %}">
-                    <input type="search" name="q" placeholder="Search fragrances..." class="mobile-search-input">
+                    <input type="search" name="q" placeholder="{% trans 'Search fragrances...' %}" class="mobile-search-input">
                 </form>
             </div>
         </div>
@@ -1093,12 +1093,12 @@
             <i class="fas fa-times"></i>
         </button>
         <nav class="mobile-nav">
-            <a href="{% url 'home' %}" class="mobile-nav-link">Home</a>
-            <a href="{% url 'products:product_list' %}" class="mobile-nav-link">Perfumes</a>
-            <a href="{% url 'products:collection_list' %}" class="mobile-nav-link">Collections</a>
-            <a href="{% url 'products:category_list' %}" class="mobile-nav-link">Categories</a>
-            <a href="{% url 'orders:order_history' %}" class="mobile-nav-link">My Orders</a>
-            <a href="#" class="mobile-nav-link">Contact</a>
+            <a href="{% url 'home' %}" class="mobile-nav-link">{% trans "Home" %}</a>
+            <a href="{% url 'products:product_list' %}" class="mobile-nav-link">{% trans "Perfumes" %}</a>
+            <a href="{% url 'products:collection_list' %}" class="mobile-nav-link">{% trans "Collections" %}</a>
+            <a href="{% url 'products:category_list' %}" class="mobile-nav-link">{% trans "Categories" %}</a>
+            <a href="{% url 'orders:order_history' %}" class="mobile-nav-link">{% trans "My Orders" %}</a>
+            <a href="#" class="mobile-nav-link">{% trans "Contact" %}</a>
             {% include 'partials/lang_switcher_mobile.html' %}
         </nav>
     </div>
@@ -1106,7 +1106,7 @@
     <!-- Checkout Section -->
     <section class="checkout-container">
         <div class="checkout-content">
-            <h1 class="checkout-title">Checkout</h1>
+            <h1 class="checkout-title">{% trans "Checkout" %}</h1>
 
             <div class="checkout-grid">
                 <!-- Checkout Form -->
@@ -1116,7 +1116,7 @@
 
                         <!-- Shipping Information -->
                         <div class="form-section">
-                            <h3 class="section-title">Shipping Information</h3>
+                            <h3 class="section-title">{% trans "Shipping Information" %}</h3>
 
                             <div class="form-row">
                                 <div class="form-group">
@@ -1124,34 +1124,35 @@
                                     <input type="text" name="full_name" class="form-input" value="{{ profile.full_name }}" required>
                                 </div>
                                 <div class="form-group">
-                                    <label class="form-label">Email *</label>
+                                    <label class="form-label">{% trans "Email" %} *</label>
                                     <input type="email" name="email" class="form-input" value="{{ user.email }}" required>
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label class="form-label">Address *</label>
+                                <label class="form-label">{% trans "Address" %} *</label>
                                 <textarea name="address" class="form-input" rows="3" required>{{ profile.address }}</textarea>
                             </div>
 
                             <div class="form-row">
                                 <div class="form-group">
-                                    <label class="form-label">City *</label>
+                                    <label class="form-label">{% trans "City" %} *</label>
                                     <input type="text" name="city" class="form-input" required>
                                 </div>
                                 <div class="form-group">
-                                    <label class="form-label">Postal Code *</label>
+                                    <label class="form-label">{% trans "Postal Code" %} *</label>
                                     <input type="text" name="postal_code" class="form-input" required>
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label class="form-label">Country *</label>
+                                <label class="form-label">{% trans "Country" %} *</label>
                                 <input type="text" name="country" class="form-input" required>
                             </div>
                         </div>
 
                         <!-- Payment Information -->
+                        <h3 class="section-title" style="display:none">{% trans "Payment Information" %}</h3>
                         <div class="form-section">
 
 
@@ -1159,20 +1160,20 @@
 
                             <div class="security-badge">
                                 <i class="fas fa-lock"></i>
-                                <span>Payments secured by Stripe</span>
+                                <span>{% trans "Payments secured by Stripe" %}</span>
                             </div>
                         </div>
 
                         <button type="submit" class="place-order-btn" id="submit-button">
                             <i class="fas fa-lock" style="margin-right: 0.5rem;"></i>
-                            Pay {{ final_total|floatformat:2 }}czk
+                            {% trans "Pay" %} {{ final_total|floatformat:2 }}czk
                         </button>
                     </form>
                 </div>
 
                 <!-- Order Summary -->
                 <div class="order-summary">
-                    <h3 class="section-title">Order Summary</h3>
+                    <h3 class="section-title">{% trans "Order Summary" %}</h3>
 
                     <div class="order-items">
                         {% for item in cart_items %}
@@ -1185,22 +1186,22 @@
                     </div>
 
                     <div class="summary-row">
-                        <span>Subtotal:</span>
+                        <span>{% trans "Subtotal:" %}</span>
                         <span>{{ total|floatformat:2 }}czk</span>
                     </div>
 
                     <div class="summary-row">
-                        <span>Shipping:</span>
+                        <span>{% trans "Shipping:" %}</span>
                         <span>{{ shipping_cost|floatformat:2 }}czk</span>
                     </div>
 
                     <div class="summary-row">
-                        <span>Tax:</span>
+                        <span>{% trans "Tax:" %}</span>
                         <span>{{ tax|floatformat:2 }}czk</span>
                     </div>
 
                     <div class="summary-row summary-total">
-                        <span>Total:</span>
+                        <span>{% trans "Total:" %}</span>
                         <span>{{ final_total|floatformat:2 }}czk</span>
                     </div>
                 </div>

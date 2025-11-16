@@ -1,11 +1,11 @@
-{% load static %}
+{% load static i18n %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="/static/videos/images/NASMA.png">
-    <title>Order Details | Golden Fragrance</title>
+    <title>{% trans "Order Details" %} | Golden Fragrance</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -1149,24 +1149,24 @@
             <div class="header-content">
                 <div class="logo">
                     <a href="{% url 'home' %}">
-                        <img src="{% static 'videos/images/NASMA1.png' %}" alt="Golden Fragrance" class="logo-image">
+                        <img src="{% static 'videos/images/NASMA1.png' %}" alt="{% trans 'Golden Fragrance' %}" class="logo-image">
                     </a>
                 </div>
 
                 <nav>
-                    <a href="{% url 'home' %}" class="nav-link">Home</a>
-                    <a href="{% url 'products:product_list' %}" class="nav-link">Perfumes</a>
-                    <a href="{% url 'products:collection_list' %}" class="nav-link">Collections</a>
-                    <a href="{% url 'products:category_list' %}" class="nav-link">Categories</a>
-                    <a href="{% url 'orders:order_history' %}" class="nav-link active">Orders</a>
-                    <a href="#" class="nav-link">Contact</a>
+                    <a href="{% url 'home' %}" class="nav-link">{% trans "Home" %}</a>
+                    <a href="{% url 'products:product_list' %}" class="nav-link">{% trans "Perfumes" %}</a>
+                    <a href="{% url 'products:collection_list' %}" class="nav-link">{% trans "Collections" %}</a>
+                    <a href="{% url 'products:category_list' %}" class="nav-link">{% trans "Categories" %}</a>
+                    <a href="{% url 'orders:order_history' %}" class="nav-link active">{% trans "Orders" %}</a>
+                    <a href="#" class="nav-link">{% trans "Contact" %}</a>
                 </nav>
 
                 <div class="search-container">
                     <div class="search-wrapper">
                         <i class="fas fa-search search-icon"></i>
                         <form method="get" action="{% url 'products:product_list' %}">
-                            <input type="search" name="q" placeholder="Search fragrances..." class="search-input">
+                            <input type="search" name="q" placeholder="{% trans 'Search fragrances...' %}" class="search-input">
                         </form>
                     </div>
                 </div>
@@ -1230,7 +1230,7 @@
             <div class="mobile-search-wrapper">
                 <i class="fas fa-search mobile-search-icon"></i>
                 <form method="get" action="{% url 'products:product_list' %}">
-                    <input type="search" name="q" placeholder="Search fragrances..." class="mobile-search-input">
+                    <input type="search" name="q" placeholder="{% trans 'Search fragrances...' %}" class="mobile-search-input">
                 </form>
             </div>
         </div>
@@ -1242,12 +1242,12 @@
             <i class="fas fa-times"></i>
         </button>
         <nav class="mobile-nav">
-            <a href="{% url 'home' %}" class="mobile-nav-link">Home</a>
-            <a href="{% url 'products:product_list' %}" class="mobile-nav-link">Perfumes</a>
-            <a href="{% url 'products:collection_list' %}" class="mobile-nav-link">Collections</a>
-            <a href="{% url 'products:category_list' %}" class="mobile-nav-link">Categories</a>
-            <a href="{% url 'orders:order_history' %}" class="mobile-nav-link active">Orders</a>
-            <a href="#" class="mobile-nav-link">Contact</a>
+            <a href="{% url 'home' %}" class="mobile-nav-link">{% trans "Home" %}</a>
+            <a href="{% url 'products:product_list' %}" class="mobile-nav-link">{% trans "Perfumes" %}</a>
+            <a href="{% url 'products:collection_list' %}" class="mobile-nav-link">{% trans "Collections" %}</a>
+            <a href="{% url 'products:category_list' %}" class="mobile-nav-link">{% trans "Categories" %}</a>
+            <a href="{% url 'orders:order_history' %}" class="mobile-nav-link active">{% trans "Orders" %}</a>
+            <a href="#" class="mobile-nav-link">{% trans "Contact" %}</a>
             {% include 'partials/lang_switcher_mobile.html' %}
         </nav>
     </div>
@@ -1257,20 +1257,20 @@
         <div class="order-detail-content">
             <a href="{% url 'orders:order_history' %}" class="back-button">
                 <i class="fas fa-arrow-left"></i>
-                Back to Order History
+                {% trans "Back to Order History" %}
             </a>
 
             {% if order %}
             <div class="order-header">
-                <h1 class="order-title">Order #{{ order.order_number }}</h1>
+                <h1 class="order-title">{% trans "Order" %} #{{ order.order_number }}</h1>
 
                 <div class="order-meta">
                     <div class="meta-item">
-                        <span class="meta-label">Order Date</span>
+                        <span class="meta-label">{% trans "Order Date" %}</span>
                         <span class="meta-value">{{ order.created_at|date:"F d, Y" }}</span>
                     </div>
                     <div class="meta-item">
-                        <span class="meta-label">Status</span>
+                        <span class="meta-label">{% trans "Status" %}</span>
                         <span class="order-status status-{{ order.status }}">
                             <i class="fas
                                 {% if order.status == 'pending' %}fa-clock
@@ -1285,16 +1285,16 @@
                         </span>
                     </div>
                     <div class="meta-item">
-                        <span class="meta-label">Total Amount</span>
+                        <span class="meta-label">{% trans "Total Amount" %}</span>
                         <span class="meta-value">{{ order.final_total }} Kč</span>
                     </div>
                     <div class="meta-item">
-                        <span class="meta-label">Payment Method</span>
+                        <span class="meta-label">{% trans "Payment Method" %}</span>
                         <span class="meta-value">
                             {% if order.payment_method %}
                                 {{ order.get_payment_method_display }}
                             {% else %}
-                                Stripe
+                                {% trans "Stripe" %}
                             {% endif %}
                         </span>
                     </div>
@@ -1306,7 +1306,7 @@
                 <div class="order-section">
                     <h2 class="section-title">
                         <i class="fas fa-box"></i>
-                        Order Items
+                        {% trans "Order Items" %}
                     </h2>
                     <div class="order-items">
                         {% for item in order.items.all %}
@@ -1320,10 +1320,10 @@
                             </div>
                             <div class="item-details">
                                 <div class="item-name">{{ item.product.name }}</div>
-                                <div class="item-price">{{ item.price }} Kč each</div>
+                                <div class="item-price">{{ item.price }} {% trans "Kč each" %}</div>
                             </div>
                             <div class="item-quantity">
-                                Qty: {{ item.quantity }}
+                                {% trans "Qty" %}: {{ item.quantity }}
                             </div>
                             <div class="item-total">
                                 {{ item.total_price }} Kč
@@ -1337,7 +1337,7 @@
                 <div class="order-section">
                     <h2 class="section-title">
                         <i class="fas fa-truck"></i>
-                        Shipping Information
+                        {% trans "Shipping Information" %}
                     </h2>
                     <div class="shipping-address">
                         <div class="address-line"><strong>{{ order.full_name }}</strong></div>
@@ -1356,19 +1356,19 @@
                 <div class="tracking-section">
                     <h2 class="section-title">
                         <i class="fas fa-shipping-fast"></i>
-                        Tracking Information
+                        {% trans "Tracking Information" %}
                     </h2>
                     <div class="tracking-info">
                         {% if order.tracking_company %}
                         <div class="tracking-company">
                             <i class="fas fa-building"></i>
-                            <strong>Shipping Company:</strong> {{ order.tracking_company }}
+                            <strong>{% trans "Shipping Company" %}:</strong> {{ order.tracking_company }}
                         </div>
                         {% endif %}
 
                         <div class="tracking-number">
                             <i class="fas fa-barcode"></i>
-                            <strong>Tracking Number:</strong>
+                            <strong>{% trans "Tracking Number" %}:</strong>
                             {% if order.tracking_url %}
                                 <a href="{{ order.tracking_url }}" target="_blank" class="tracking-link">
                                     {{ order.tracking_number }}
@@ -1382,7 +1382,7 @@
                         <div>
                             <a href="{{ order.tracking_url }}" target="_blank" class="tracking-button">
                                 <i class="fas fa-external-link-alt"></i>
-                                Track Your Package
+                                {% trans "Track Your Package" %}
                             </a>
                         </div>
                         {% endif %}
@@ -1392,9 +1392,9 @@
                 <div class="shipping-notice">
                     <h2 class="section-title">
                         <i class="fas fa-info-circle"></i>
-                        Shipping Update
+                        {% trans "Shipping Update" %}
                     </h2>
-                    <p>Your order has been shipped. Tracking information will be available soon.</p>
+                    <p>{% trans "Your order has been shipped. Tracking information will be available soon." %}</p>
                 </div>
                 {% endif %}
 
@@ -1402,23 +1402,23 @@
                 <div class="order-section">
                     <h2 class="section-title">
                         <i class="fas fa-receipt"></i>
-                        Order Summary
+                        {% trans "Order Summary" %}
                     </h2>
                     <div class="order-summary">
                         <div class="summary-row">
-                            <span class="summary-label">Subtotal</span>
+                            <span class="summary-label">{% trans "Subtotal" %}</span>
                             <span class="summary-value">{{ order.total_amount }} Kč</span>
                         </div>
                         <div class="summary-row">
-                            <span class="summary-label">Shipping</span>
+                            <span class="summary-label">{% trans "Shipping" %}</span>
                             <span class="summary-value">{{ order.shipping_cost }} Kč</span>
                         </div>
                         <div class="summary-row">
-                            <span class="summary-label">Tax</span>
+                            <span class="summary-label">{% trans "Tax" %}</span>
                             <span class="summary-value">{{ order.tax_amount }} Kč</span>
                         </div>
                         <div class="summary-row" style="border-top: 2px solid var(--primary); padding-top: 1rem;">
-                            <span class="summary-label summary-total">Total</span>
+                            <span class="summary-label summary-total">{% trans "Total" %}</span>
                             <span class="summary-value summary-total">{{ order.final_total }} Kč</span>
                         </div>
                     </div>
@@ -1428,31 +1428,31 @@
                 <div class="order-section">
                     <h2 class="section-title">
                         <i class="fas fa-cog"></i>
-                        Order Actions
+                        {% trans "Order Actions" %}
                     </h2>
                     <div class="action-buttons">
                         {% if order.status == 'delivered' %}
                         <a href="#" class="btn btn-primary">
                             <i class="fas fa-star"></i>
-                            Write a Review
+                            {% trans "Write a Review" %}
                         </a>
                         {% endif %}
 
                         {% if order.status == 'shipped' %}
                         <a href="#" class="btn btn-primary">
                             <i class="fas fa-map-marker-alt"></i>
-                            Track Package
+                            {% trans "Track Package" %}
                         </a>
                         {% endif %}
 
                         <a href="{% url 'orders:order_history' %}" class="btn btn-outline">
                             <i class="fas fa-list"></i>
-                            View All Orders
+                            {% trans "View All Orders" %}
                         </a>
 
                         <a href="{% url 'products:product_list' %}" class="btn btn-outline">
                             <i class="fas fa-shopping-bag"></i>
-                            Continue Shopping
+                            {% trans "Continue Shopping" %}
                         </a>
                     </div>
                 </div>
@@ -1463,10 +1463,10 @@
                 <div class="empty-order-icon">
                     <i class="fas fa-exclamation-circle"></i>
                 </div>
-                <h3>Order Not Found</h3>
-                <p>The order you're looking for doesn't exist or you don't have permission to view it.</p>
+                <h3>{% trans "Order Not Found" %}</h3>
+                <p>{% trans "The order you're looking for doesn't exist or you don't have permission to view it." %}</p>
                 <a href="{% url 'orders:order_history' %}" class="btn btn-primary" style="margin-top: 1rem;">
-                    Back to Order History
+                    {% trans "Back to Order History" %}
                 </a>
             </div>
             {% endif %}
@@ -1477,7 +1477,7 @@
     <a href="https://wa.me/420123456789?text=Hi%20Golden%20Fragrance%2C%20I%20have%20a%20question%20about%20my%20order%20%23{{ order.order_number }}"
        class="whatsapp-float" target="_blank" rel="noopener noreferrer">
         <i class="fab fa-whatsapp"></i>
-        <span class="whatsapp-tooltip">Chat with us on WhatsApp</span>
+        <span class="whatsapp-tooltip">{% trans "Chat with us on WhatsApp" %}</span>
     </a>
 
     <!-- Footer -->
@@ -1490,7 +1490,7 @@
                 <a href="#" class="social-link"><i class="fab fa-pinterest"></i></a>
                 <a href="#" class="social-link"><i class="fab fa-tiktok"></i></a>
             </div>
-            <p class="copyright">&copy; 2024 Golden Fragrance. All rights reserved.</p>
+            <p class="copyright">&copy; 2024 {% trans "Golden Fragrance. All rights reserved." %}</p>
         </div>
     </footer>
 

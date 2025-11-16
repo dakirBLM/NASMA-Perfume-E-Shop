@@ -1,4 +1,5 @@
 {% load static %}
+{% load i18n %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -972,24 +973,24 @@
             <div class="header-content">
                 <div class="logo">
                     <a href="{% url 'home' %}">
-                        <img src="{% static 'videos/images/NASMA1.png' %}" alt="Golden Fragrance" class="logo-image">
+                        <img src="{% static 'videos/images/NASMA1.png' %}" alt="{% trans 'Golden Fragrance' %}" class="logo-image">
                     </a>
                 </div>
 
                 <nav>
-                    <a href="{% url 'home' %}" class="nav-link">Home</a>
-                    <a href="{% url 'products:product_list' %}" class="nav-link">Perfumes</a>
-                    <a href="{% url 'products:collection_list' %}" class="nav-link">Collections</a>
-                    <a href="{% url 'products:category_list' %}" class="nav-link">Categories</a>
-                    <a href="{% url 'orders:order_history' %}" class="nav-link">Orders</a>
-                    <a href="#" class="nav-link">Contact</a>
+                    <a href="{% url 'home' %}" class="nav-link">{% trans "Home" %}</a>
+                    <a href="{% url 'products:product_list' %}" class="nav-link">{% trans "Perfumes" %}</a>
+                    <a href="{% url 'products:collection_list' %}" class="nav-link">{% trans "Collections" %}</a>
+                    <a href="{% url 'products:category_list' %}" class="nav-link">{% trans "Categories" %}</a>
+                    <a href="{% url 'orders:order_history' %}" class="nav-link">{% trans "Orders" %}</a>
+                    <a href="#" class="nav-link">{% trans "Contact" %}</a>
                 </nav>
 
                 <div class="search-container">
                     <div class="search-wrapper">
                         <i class="fas fa-search search-icon"></i>
                         <form method="get" action="{% url 'products:product_list' %}">
-                            <input type="search" name="q" placeholder="Search fragrances..." class="search-input">
+                            <input type="search" name="q" placeholder="{% trans 'Search fragrances...' %}" class="search-input">
                         </form>
                     </div>
                 </div>
@@ -1053,7 +1054,7 @@
             <div class="mobile-search-wrapper">
                 <i class="fas fa-search mobile-search-icon"></i>
                 <form method="get" action="{% url 'products:product_list' %}">
-                    <input type="search" name="q" placeholder="Search fragrances..." class="mobile-search-input">
+                    <input type="search" name="q" placeholder="{% trans 'Search fragrances...' %}" class="mobile-search-input">
                 </form>
             </div>
         </div>
@@ -1065,12 +1066,12 @@
             <i class="fas fa-times"></i>
         </button>
         <nav class="mobile-nav">
-            <a href="{% url 'home' %}" class="mobile-nav-link">Home</a>
-            <a href="{% url 'products:product_list' %}" class="mobile-nav-link">Perfumes</a>
-            <a href="{% url 'products:collection_list' %}" class="mobile-nav-link">Collections</a>
-            <a href="{% url 'products:category_list' %}" class="mobile-nav-link">Categories</a>
-            <a href="{% url 'orders:order_history' %}" class="mobile-nav-link">Orders</a>
-            <a href="#" class="mobile-nav-link">Contact</a>
+            <a href="{% url 'home' %}" class="mobile-nav-link">{% trans "Home" %}</a>
+            <a href="{% url 'products:product_list' %}" class="mobile-nav-link">{% trans "Perfumes" %}</a>
+            <a href="{% url 'products:collection_list' %}" class="mobile-nav-link">{% trans "Collections" %}</a>
+            <a href="{% url 'products:category_list' %}" class="mobile-nav-link">{% trans "Categories" %}</a>
+            <a href="{% url 'orders:order_history' %}" class="mobile-nav-link">{% trans "Orders" %}</a>
+            <a href="#" class="mobile-nav-link">{% trans "Contact" %}</a>
             {% include 'partials/lang_switcher_mobile.html' %}
         </nav>
     </div>
@@ -1078,18 +1079,18 @@
     <!-- Wishlist Section -->
     <section class="wishlist-container">
         <div class="wishlist-content">
-            <h1 class="wishlist-title">My Wishlist</h1>
-            <p class="wishlist-subtitle">Your curated collection of favorite fragrances</p>
+            <h1 class="wishlist-title">{% trans "My Wishlist" %}</h1>
+            <p class="wishlist-subtitle">{% trans "Your curated collection of favorite fragrances" %}</p>
 
             {% if wishlist_items %}
             <div class="wishlist-stats">
                 <div class="stat-item">
                     <div class="stat-number">{{ wishlist_items|length }}</div>
-                    <div class="stat-label">Items Saved</div>
+                    <div class="stat-label">{% trans "Items Saved" %}</div>
                 </div>
                 <div class="stat-item">
                     <div class="stat-number">{{ total_value }}czk</div>
-                    <div class="stat-label">Total Value</div>
+                    <div class="stat-label">{% trans "Total Value" %}</div>
                 </div>
             </div>
 
@@ -1099,10 +1100,10 @@
                     <div class="wishlist-item-image">
                         <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}">
                         <div class="wishlist-item-actions">
-                            <button class="wishlist-remove-btn" onclick="removeFromWishlist({{ item.product.id }})" title="Remove from wishlist">
+                            <button class="wishlist-remove-btn" onclick="removeFromWishlist({{ item.product.id }})" title="{% trans 'Remove from wishlist' %}">
                                 <i class="fas fa-times"></i>
                             </button>
-                            <button class="wishlist-add-cart-btn" onclick="addToCartFromWishlist({{ item.product.id }})" title="Add to cart">
+                            <button class="wishlist-add-cart-btn" onclick="addToCartFromWishlist({{ item.product.id }})" title="{% trans 'Add to cart' %}">
                                 <i class="fas fa-shopping-bag"></i>
                             </button>
                         </div>
@@ -1132,13 +1133,13 @@
                         </div>
 
                         <div class="added-date">
-                            Added on {{ item.added_at|date:"M d, Y" }}
+                            {% trans "Added on" %} {{ item.added_at|date:"M d, Y" }}
                         </div>
 
                         <div class="wishlist-item-actions-bottom">
                             <button class="btn-move-to-cart" onclick="addToCartFromWishlist({{ item.product.id }})">
                                 <i class="fas fa-shopping-bag"></i>
-                                Add to Cart
+                                {% trans "Add to Cart" %}
                             </button>
                             <a href="{% url 'products:product_detail' item.product.id %}" class="btn-view-details">
                                 <i class="fas fa-eye"></i>
@@ -1152,10 +1153,10 @@
             <div class="wishlist-actions">
                 <button class="btn btn-outline" onclick="clearWishlist()">
                     <i class="fas fa-trash"></i>
-                    Clear Wishlist
+                    {% trans "Clear Wishlist" %}
                 </button>
                 <a href="{% url 'products:product_list' %}" class="btn btn-primary">
-                    Continue Shopping
+                    {% trans "Continue Shopping" %}
                     <i class="fas fa-arrow-right"></i>
                 </a>
             </div>
@@ -1164,11 +1165,11 @@
                 <div class="empty-wishlist-icon">
                     <i class="fas fa-heart"></i>
                 </div>
-                <h3>Your wishlist is empty</h3>
-                <p>Start exploring our luxury fragrances and add your favorites here</p>
+                <h3>{% trans "Your wishlist is empty" %}</h3>
+                <p>{% trans "Start exploring our luxury fragrances and add your favorites here" %}</p>
                 <div class="wishlist-actions">
                     <a href="{% url 'products:product_list' %}" class="btn btn-primary">
-                        Explore Products
+                        {% trans "Explore Products" %}
                         <i class="fas fa-arrow-right" style="margin-left: 0.5rem;"></i>
                     </a>
                 </div>
@@ -1187,7 +1188,7 @@
                 <a href="#" class="social-link"><i class="fab fa-pinterest"></i></a>
                 <a href="#" class="social-link"><i class="fab fa-tiktok"></i></a>
             </div>
-            <p class="copyright">&copy; 2024 Golden Fragrance. All rights reserved.</p>
+            <p class="copyright">&copy; 2024 {% trans "Golden Fragrance. All rights reserved." %}</p>
         </div>
     </footer>
 
@@ -1282,8 +1283,18 @@
         });
 
         // Wishlist functionality
+        // Translation messages sourced from data attributes
+        const wishlistMessagesEl = document.querySelector('[data-wishlist-messages]');
+        const MSG_REMOVE_CONFIRM = wishlistMessagesEl?.dataset.removeConfirm || 'Are you sure you want to remove this item from your wishlist?';
+        const MSG_REMOVE_ERROR = wishlistMessagesEl?.dataset.removeError || 'Error removing item from wishlist';
+        const MSG_ADDED_CART = wishlistMessagesEl?.dataset.addedCart || 'Product added to cart!';
+        const MSG_ADD_ERROR = wishlistMessagesEl?.dataset.addError || 'Error adding product to cart';
+        const MSG_CLEAR_CONFIRM = wishlistMessagesEl?.dataset.clearConfirm || 'Are you sure you want to clear your entire wishlist?';
+        const MSG_CLEARING = wishlistMessagesEl?.dataset.clearing || 'Clearing wishlist...';
+        const MSG_ERROR_PREFIX = wishlistMessagesEl?.dataset.errorPrefix || 'Error:';
+
         function removeFromWishlist(productId) {
-            if (confirm('Are you sure you want to remove this item from your wishlist?')) {
+            if (confirm(MSG_REMOVE_CONFIRM)) {
                 fetch(`/accounts/remove-from-wishlist/${productId}/`, {
                     method: 'POST',
                     headers: {
@@ -1309,12 +1320,12 @@
                             location.reload();
                         }
                     } else {
-                        showNotification(data.message, 'error');
+                        showNotification(data.message || MSG_REMOVE_ERROR, 'error');
                     }
                 })
                 .catch(error => {
                     console.error('Error:', error);
-                    showNotification('Error removing item from wishlist', 'error');
+                    showNotification(MSG_REMOVE_ERROR, 'error');
                 });
             }
         }
@@ -1331,28 +1342,28 @@
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
-                    showNotification('Product added to cart!', 'success');
+                    showNotification(MSG_ADDED_CART, 'success');
                     // Update only cart icon badges
                     document.querySelectorAll('a[href*="/orders/cart"] .cart-badge, .icon-button.cart-button .cart-badge').forEach(function(el){
                         el.textContent = data.cart_count;
                     });
                 } else {
-                    showNotification('Error: ' + data.message, 'error');
+                    showNotification(`${MSG_ERROR_PREFIX} ${data.message}`, 'error');
                 }
             })
             .catch(error => {
                 console.error('Error:', error);
-                showNotification('Error adding product to cart', 'error');
+                showNotification(MSG_ADD_ERROR, 'error');
             });
         }
 
         function clearWishlist() {
-            if (confirm('Are you sure you want to clear your entire wishlist?')) {
+            if (confirm(MSG_CLEAR_CONFIRM)) {
                 // This would require a new view - for now, we'll remove items one by one
                 const wishlistItems = document.querySelectorAll('.wishlist-item');
                 if (wishlistItems.length === 0) return;
 
-                showNotification('Clearing wishlist...', 'info');
+                showNotification(MSG_CLEARING, 'info');
 
                 // Remove all items (in a real app, you'd have a clear-wishlist endpoint)
                 wishlistItems.forEach(item => {
@@ -1439,6 +1450,15 @@
         }
     </script>
 </body>
+    <!-- Hidden element carrying translated JS messages -->
+    <div data-wishlist-messages
+         data-remove-confirm="{% trans 'Are you sure you want to remove this item from your wishlist?' %}"
+         data-remove-error="{% trans 'Error removing item from wishlist' %}"
+         data-added-cart="{% trans 'Product added to cart!' %}"
+         data-add-error="{% trans 'Error adding product to cart' %}"
+         data-clear-confirm="{% trans 'Are you sure you want to clear your entire wishlist?' %}"
+         data-clearing="{% trans 'Clearing wishlist...' %}"
+         data-error-prefix="{% trans 'Error:' %}" class="sr-only"></div>
     {% include 'partials/lang_switcher_form.html' %}
     {% include 'partials/lang_switcher_js.html' %}
 </html>

@@ -1,11 +1,11 @@
-{% load static %}
+{% load static i18n %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="/static/videos/images/NASMA.png">
-    <title>Order History | Golden Fragrance</title>
+    <title>{% trans "Order History" %} | Golden Fragrance</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -910,24 +910,24 @@
             <div class="header-content">
                 <div class="logo">
                     <a href="{% url 'home' %}">
-                        <img src="{% static 'videos/images/NASMA1.png' %}" alt="Golden Fragrance" class="logo-image">
+                        <img src="{% static 'videos/images/NASMA1.png' %}" alt="{% trans 'Golden Fragrance' %}" class="logo-image">
                     </a>
                 </div>
 
                 <nav>
-                    <a href="{% url 'home' %}" class="nav-link">Home</a>
-                    <a href="{% url 'products:product_list' %}" class="nav-link">Perfumes</a>
-                    <a href="{% url 'products:collection_list' %}" class="nav-link">Collections</a>
-                    <a href="{% url 'products:category_list' %}" class="nav-link">Categories</a>
-                    <a href="{% url 'orders:order_history' %}" class="nav-link active">Orders</a>
-                    <a href="#" class="nav-link">Contact</a>
+                    <a href="{% url 'home' %}" class="nav-link">{% trans "Home" %}</a>
+                    <a href="{% url 'products:product_list' %}" class="nav-link">{% trans "Perfumes" %}</a>
+                    <a href="{% url 'products:collection_list' %}" class="nav-link">{% trans "Collections" %}</a>
+                    <a href="{% url 'products:category_list' %}" class="nav-link">{% trans "Categories" %}</a>
+                    <a href="{% url 'orders:order_history' %}" class="nav-link active">{% trans "Orders" %}</a>
+                    <a href="#" class="nav-link">{% trans "Contact" %}</a>
                 </nav>
 
                 <div class="search-container">
                     <div class="search-wrapper">
                         <i class="fas fa-search search-icon"></i>
                         <form method="get" action="{% url 'products:product_list' %}">
-                            <input type="search" name="q" placeholder="Search fragrances..." class="search-input">
+                            <input type="search" name="q" placeholder="{% trans 'Search fragrances...' %}" class="search-input">
                         </form>
                     </div>
                 </div>
@@ -991,7 +991,7 @@
             <div class="mobile-search-wrapper">
                 <i class="fas fa-search mobile-search-icon"></i>
                 <form method="get" action="{% url 'products:product_list' %}">
-                    <input type="search" name="q" placeholder="Search fragrances..." class="mobile-search-input">
+                    <input type="search" name="q" placeholder="{% trans 'Search fragrances...' %}" class="mobile-search-input">
                 </form>
             </div>
         </div>
@@ -1003,12 +1003,12 @@
             <i class="fas fa-times"></i>
         </button>
         <nav class="mobile-nav">
-            <a href="{% url 'home' %}" class="mobile-nav-link">Home</a>
-            <a href="{% url 'products:product_list' %}" class="mobile-nav-link">Perfumes</a>
-            <a href="{% url 'products:collection_list' %}" class="mobile-nav-link">Collections</a>
-            <a href="{% url 'products:category_list' %}" class="mobile-nav-link">Categories</a>
-            <a href="{% url 'orders:order_history' %}" class="mobile-nav-link active">My Orders</a>
-            <a href="#" class="mobile-nav-link">Contact</a>
+            <a href="{% url 'home' %}" class="mobile-nav-link">{% trans "Home" %}</a>
+            <a href="{% url 'products:product_list' %}" class="mobile-nav-link">{% trans "Perfumes" %}</a>
+            <a href="{% url 'products:collection_list' %}" class="mobile-nav-link">{% trans "Collections" %}</a>
+            <a href="{% url 'products:category_list' %}" class="mobile-nav-link">{% trans "Categories" %}</a>
+            <a href="{% url 'orders:order_history' %}" class="mobile-nav-link active">{% trans "My Orders" %}</a>
+            <a href="#" class="mobile-nav-link">{% trans "Contact" %}</a>
             {% include 'partials/lang_switcher_mobile.html' %}
         </nav>
     </div>
@@ -1016,14 +1016,14 @@
     <!-- Orders Section -->
     <section class="orders-container">
         <div class="orders-content">
-            <h1 class="orders-title">Order History</h1>
+            <h1 class="orders-title">{% trans "Order History" %}</h1>
 
             {% if orders %}
             <div class="orders-list">
                 {% for order in orders %}
                 <div class="order-card">
                     <div class="order-header">
-                        <div class="order-id">Order #{{ order.id }}</div>
+                        <div class="order-id">{% trans "Order" %} #{{ order.id }}</div>
                         <div class="order-date">{{ order.created_at|date:"M d, Y" }}</div>
                         <div class="order-status status-{{ order.status }}">
                             {{ order.get_status_display }}
@@ -1038,7 +1038,7 @@
                         </div>
                         <div class="order-total">{{ order.total_amount }}czk</div>
                         <a href="{% url 'orders:order_detail' order.id %}" class="view-order-btn">
-                            View Details
+                            {% trans "View Details" %}
                         </a>
                     </div>
                 </div>
@@ -1049,10 +1049,10 @@
                 <div class="empty-orders-icon">
                     <i class="fas fa-box-open"></i>
                 </div>
-                <h3>No orders yet</h3>
-                <p>Start shopping to see your order history here</p>
+                    <h3>{% trans "No orders yet" %}</h3>
+                    <p>{% trans "Start shopping to see your order history here" %}</p>
                 <a href="{% url 'products:product_list' %}" class="btn btn-primary" style="margin-top: 1rem;">
-                    Start Shopping
+                        {% trans "Continue Shopping" %}
                     <i class="fas fa-arrow-right" style="margin-left: 0.5rem;"></i>
                 </a>
             </div>
@@ -1064,7 +1064,7 @@
     <a href="https://wa.me/420123456789?text=Hi%20Golden%20Fragrance%2C%20I%20would%20like%20to%20inquire%20about%20my%20orders"
        class="whatsapp-float" target="_blank" rel="noopener noreferrer">
         <i class="fab fa-whatsapp"></i>
-        <span class="whatsapp-tooltip">Chat with us on WhatsApp</span>
+        <span class="whatsapp-tooltip">{% trans "Chat with us on WhatsApp" %}</span>
     </a>
 
     <!-- Footer -->
@@ -1077,7 +1077,7 @@
                 <a href="#" class="social-link"><i class="fab fa-pinterest"></i></a>
                 <a href="#" class="social-link"><i class="fab fa-tiktok"></i></a>
             </div>
-            <p class="copyright">&copy; 2024 Golden Fragrance. All rights reserved.</p>
+            <p class="copyright">&copy; 2024 {% trans "Golden Fragrance. All rights reserved." %}</p>
         </div>
     </footer>
 

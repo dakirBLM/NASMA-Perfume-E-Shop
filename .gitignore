@@ -16,6 +16,7 @@ env/
 *.log
 staticfiles/
 media/
+static/videos/
 
 # SQLite
 *.sqlite3
