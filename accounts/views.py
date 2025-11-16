@@ -90,8 +90,9 @@ def wishlist_view(request):
     }
     return render(request, 'accounts/wishlist.html', context)
 
-@login_required
 def add_to_wishlist(request, product_id):
+    if not request.user.is_authenticated:
+        return JsonResponse({'success': False, 'message': 'Please login to add items to your wishlist.'}, status=401)
     if request.method == 'POST':
         product = get_object_or_404(Product, id=product_id)
         
@@ -118,10 +119,11 @@ def add_to_wishlist(request, product_id):
             'wishlist_count': wishlist_count
         })
     
-    return JsonResponse({'success': False, 'message': 'Invalid request'})
+    return JsonResponse({'success': False, 'message': 'Invalid request'}, status=405)
 
-@login_required
 def remove_from_wishlist(request, product_id):
+    if not request.user.is_authenticated:
+        return JsonResponse({'success': False, 'message': 'Please login to manage your wishlist.'}, status=401)
     if request.method == 'POST':
         product = get_object_or_404(Product, id=product_id)
         
@@ -144,10 +146,11 @@ def remove_from_wishlist(request, product_id):
                 'message': 'Product not found in your wishlist!'
             })
     
-    return JsonResponse({'success': False, 'message': 'Invalid request'})
+    return JsonResponse({'success': False, 'message': 'Invalid request'}, status=405)
 
-@login_required
 def toggle_wishlist(request, product_id):
+    if not request.user.is_authenticated:
+        return JsonResponse({'success': False, 'message': 'Please login to manage your wishlist.'}, status=401)
     if request.method == 'POST':
         product = get_object_or_404(Product, id=product_id)
         
@@ -171,4 +174,4 @@ def toggle_wishlist(request, product_id):
             'wishlist_count': wishlist_count
         })
     
-    return JsonResponse({'success': False, 'message': 'Invalid request'})
+    return JsonResponse({'success': False, 'message': 'Invalid request'}, status=405)

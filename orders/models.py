@@ -10,7 +10,7 @@ from django.utils.html import strip_tags
 from django.conf import settings
 
 class Order(models.Model):
-   
+
 
     STATUS_CHOICES = [
         ('pending', 'Pending'),
@@ -29,7 +29,7 @@ class Order(models.Model):
     city = models.CharField(max_length=100)
     postal_code = models.CharField(max_length=20)
     country = models.CharField(max_length=100)
-  
+
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='pending')
        # Change to CZK - Czech Koruna typically doesn't use decimal places
     total_amount = models.DecimalField(max_digits=10, decimal_places=0)  # Whole CZK
@@ -38,6 +38,10 @@ class Order(models.Model):
     tracking_company = models.CharField(max_length=100, blank=True, null=True)
     tracking_number = models.CharField(max_length=100, blank=True, null=True)
     tracking_url = models.URLField(blank=True, null=True)
+    # Stripe integration fields
+    stripe_session_id = models.CharField(max_length=255, blank=True, null=True)
+    stripe_payment_intent = models.CharField(max_length=255, blank=True, null=True)
+    paid_amount = models.DecimalField(max_digits=10, decimal_places=0, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -53,23 +57,24 @@ class Order(models.Model):
 
     def __str__(self):
         return f"Order #{self.order_number} - {self.user.username}"
-    
-    
-    def send_status_email(self, old_status):
-        """Send email notification when order status changes"""
+
+
+    def send_status_email(self, old_status: str, old_tracking_number: str | None = None):
+        """Send email notification when order status changes or tracking added."""
         subject = f"Order Update - #{self.order_number}"
-        
+        status_changed = (old_status != self.status)
+        tracking_added = bool(self.tracking_number) and (old_tracking_number in (None, '',))
         context = {
             'order': self,
             'old_status': old_status,
             'new_status': self.status,
-            'status_changed': old_status != self.status,
-            'tracking_added': self.tracking_number and not Order.objects.get(pk=self.pk).tracking_number,
+            'status_changed': status_changed,
+            'tracking_added': tracking_added,
+            'protocol': 'http' if settings.DEBUG else 'https',
+            'domain': getattr(settings, 'SITE_DOMAIN', None) or (settings.ALLOWED_HOSTS[0] if settings.ALLOWED_HOSTS else 'localhost:8000'),
         }
-        
-        html_message = render_to_string('orders/email/order_status_update.html', context)
+        html_message = render_to_string('orders/order_status_update.html', context)
         plain_message = strip_tags(html_message)
-        
         try:
             send_mail(
                 subject=subject,
@@ -80,25 +85,37 @@ class Order(models.Model):
                 fail_silently=False,
             )
         except Exception as e:
-            # Log the error but don't break the save process
-            print(f"Failed to send email: {e}")
+            print(f"Failed to send customer status email: {e}")
 
     def __str__(self):
         return f"Order #{self.order_number} - {self.user.username}"
+
+    def mark_as_paid(self, payment_intent_id: str, amount_minor_units: int):
+        """Mark order as confirmed after successful Stripe payment.
+        amount_minor_units: integer in minor currency unit (haléř) for CZK.
+        Converts to stored whole CZK (dividing by 100) since model stores integers.
+        Safe if called multiple times (idempotent)."""
+        if self.status == 'confirmed' and self.stripe_payment_intent == payment_intent_id:
+            return  # Already processed
+        self.status = 'confirmed'
+        self.stripe_payment_intent = payment_intent_id
+        if amount_minor_units is not None:
+            self.paid_amount = amount_minor_units // 100  # store whole CZK
+        self.save()
 
 
     @property
     def final_total(self):
         return self.total_amount + self.shipping_cost + self.tax_amount
-    
+
     @property
     def final_total_formatted(self):
         return f"{self.final_total} Kč"
-    
+
     @property
     def total_amount_formatted(self):
         return f"{self.total_amount} Kč"
-    
+
     @property
     def shipping_cost_formatted(self):
         return f"{self.shipping_cost} Kč"
@@ -107,7 +124,7 @@ class OrderItem(models.Model):
     order = models.ForeignKey(Order, related_name='items', on_delete=models.CASCADE)
     product = models.ForeignKey('products.Product', on_delete=models.CASCADE)
     quantity = models.IntegerField()
-    price = models.DecimalField(max_digits=10, decimal_places=0)  
+    price = models.DecimalField(max_digits=10, decimal_places=0)
 
     def __str__(self):
         return f"{self.quantity} x {self.product.name}"
