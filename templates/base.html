@@ -1,0 +1,39 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}My App{% endblock %}</title>
+    
+    <!-- PWA REQUIRED TAGS -->
+    <link rel="manifest" href="{% static 'manifest.json' %}">
+    <meta name="theme-color" content="#000000"/>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon" href="{% static 'icon-192x192.png' %}">
+    
+    <!-- COMMON STYLES (if any) -->
+    {% block common_css %}{% endblock %}
+    
+    <!-- PAGE-SPECIFIC STYLES -->
+    {% block page_css %}{% endblock %}
+</head>
+<body>
+    <!-- CONTENT -->
+    {% block content %}{% endblock %}
+    
+    <!-- COMMON SCRIPTS -->
+    {% block common_js %}{% endblock %}
+    
+    <!-- PAGE-SPECIFIC SCRIPTS -->
+    {% block page_js %}{% endblock %}
+    
+    <!-- SERVICE WORKER (only once in base) -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('{% static "sw.js" %}');
+        }
+    </script>
+</body>
+</html>

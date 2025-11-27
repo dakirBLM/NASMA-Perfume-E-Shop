@@ -1,0 +1,172 @@
+{% extends 'dashboard/base.html' %}
+
+{% block title %}Orders Management - Golden Fragrance{% endblock %}
+{% block page_title %}Orders Management{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <!-- Filters and Search -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="chart-container">
+                <div class="row">
+                    <div class="col-md-8">
+                        <form method="get" class="row g-3">
+                            <div class="col-md-3">
+                                <input type="text" name="q" class="form-control" placeholder="Search orders..." 
+                                       value="{{ search_query }}">
+                            </div>
+                            <div class="col-md-3">
+                                <select name="status" class="form-select">
+                                    <option value="">All Status</option>
+                                    <option value="pending" {% if status_filter == 'pending' %}selected{% endif %}>Pending</option>
+                                    <option value="processing" {% if status_filter == 'processing' %}selected{% endif %}>Processing</option>
+                                    <option value="completed" {% if status_filter == 'completed' %}selected{% endif %}>Completed</option>
+                                    <option value="cancelled" {% if status_filter == 'cancelled' %}selected{% endif %}>Cancelled</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <input type="date" name="date_from" class="form-control" 
+                                       value="{{ date_from }}" placeholder="From Date">
+                            </div>
+                            <div class="col-md-3">
+                                <input type="date" name="date_to" class="form-control" 
+                                       value="{{ date_to }}" placeholder="To Date">
+                            </div>
+                            <div class="col-md-12 mt-2">
+                                <button type="submit" class="btn btn-primary">Apply Filters</button>
+                                <a href="{% url 'dashboard:admin_orders' %}" class="btn btn-outline-secondary">Clear</a>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-md-4 text-end">
+                        <div class="btn-group">
+                            <button class="btn btn-outline-success">
+                                <i class="fas fa-download me-2"></i>Export
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Orders Table -->
+    <div class="row">
+        <div class="col-12">
+            <div class="chart-container">
+                <h5 class="mb-4">Orders ({{ orders.count }})</h5>
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Order ID</th>
+                                <th>Customer</th>
+                                <th>Date</th>
+                                <th>Items</th>
+                                <th>Amount</th>
+                                <th>Status</th>
+                                <th>Payment</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for order in orders %}
+                            <tr>
+                                <td>
+                                    <strong>#{{ order.id }}</strong>
+                                </td>
+                                <td>
+                                    <div>
+                                        <strong>{{ order.user.username|default:order.full_name }}</strong>
+                                        <br>
+                                        <small class="text-muted">{{ order.email }}</small>
+                                    </div>
+                                </td>
+                                <td>{{ order.created_at|date:"M d, Y" }}</td>
+                                <td>
+                                    <span class="badge bg-primary">{{ order.items.count }} items</span>
+                                </td>
+                                <td>
+                                    <strong>${{ order.total_amount|floatformat:2 }}</strong>
+                                </td>
+                                <td>
+                                    <span class="badge 
+                                        {% if order.status == 'completed' %}bg-success
+                                        {% elif order.status == 'processing' %}bg-info
+                                        {% elif order.status == 'pending' %}bg-warning
+                                        {% elif order.status == 'cancelled' %}bg-danger
+                                        {% else %}bg-secondary{% endif %}">
+                                        {{ order.status|title }}
+                                    </span>
+                                </td>
+                                <td>
+                                    <span class="badge 
+                                        {% if order.payment_status == 'paid' %}bg-success
+                                        {% elif order.payment_status == 'pending' %}bg-warning
+                                        {% else %}bg-danger{% endif %}">
+                                        {{ order.payment_status|title|default:"Pending" }}
+                                    </span>
+                                </td>
+                                <td>
+                                    <div class="btn-group btn-group-sm">
+                                        <button class="btn btn-outline-primary" title="View Order">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="btn btn-outline-success" title="Update Status">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="btn btn-outline-info" title="Print Invoice">
+                                            <i class="fas fa-print"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            {% empty %}
+                            <tr>
+                                <td colspan="8" class="text-center text-muted py-4">
+                                    <i class="fas fa-shopping-cart fa-2x mb-2"></i>
+                                    <p>No orders found</p>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Order Status Summary -->
+                <div class="row mt-4">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h6 class="card-title">Order Status Summary</h6>
+                                <div class="row text-center">
+                                    <div class="col-md-3">
+                                        <span class="badge bg-warning fs-6 p-2">Pending: {{ orders|filter_status:"pending"|length }}</span>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <span class="badge bg-info fs-6 p-2">Processing: {{ orders|filter_status:"processing"|length }}</span>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <span class="badge bg-success fs-6 p-2">Completed: {{ orders|filter_status:"completed"|length }}</span>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <span class="badge bg-danger fs-6 p-2">Cancelled: {{ orders|filter_status:"cancelled"|length }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+// Custom filter for order status (you can implement this in your views or as a template filter)
+// This is a placeholder - implement the actual filtering logic in your views
+</script>
+{% endblock %}

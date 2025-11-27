@@ -1,0 +1,42 @@
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var langForm = document.getElementById('langForm');
+    var langInput = document.getElementById('langInput');
+    function setLang(code) {
+      if (!langForm || !langInput) return;
+      langInput.value = code;
+      langForm.submit();
+    }
+    var langButton = document.getElementById('lang-button');
+    var langDropdown = document.getElementById('lang-dropdown');
+    var langMenu = document.getElementById('lang-menu');
+    if (langButton && langDropdown) {
+      langButton.addEventListener('click', function(e) {
+        e.stopPropagation();
+        langDropdown.classList.toggle('open');
+        var expanded = langButton.getAttribute('aria-expanded') === 'true';
+        langButton.setAttribute('aria-expanded', (!expanded).toString());
+      });
+      if (langMenu) {
+        langMenu.querySelectorAll('.lang-item').forEach(function(item) {
+          item.addEventListener('click', function() {
+            var code = this.getAttribute('data-lang');
+            setLang(code);
+          });
+        });
+      }
+      document.addEventListener('click', function(e) {
+        if (langDropdown.classList.contains('open') && !langDropdown.contains(e.target)) {
+          langDropdown.classList.remove('open');
+          langButton.setAttribute('aria-expanded', 'false');
+        }
+      });
+    }
+    document.querySelectorAll('.mobile-lang-btn').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var code = this.getAttribute('data-lang');
+        setLang(code);
+      });
+    });
+  });
+</script>

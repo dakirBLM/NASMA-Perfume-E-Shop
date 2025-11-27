@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg-info/
+.eggs/
+
+# Environments
+.venv/
+venv/
+env/
+
+# Django
+*.log
+staticfiles/
+media/
+static/videos/
+
+# SQLite
+*.sqlite3
+
+# VS Code
+.vscode/
+
+# MacOS
+.DS_Store

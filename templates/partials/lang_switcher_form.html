@@ -1,0 +1,6 @@
+{# Hidden form for Django's set_language view #}
+<form id="langForm" method="post" action="{% url 'set_language' %}" style="display:none;">
+  {% csrf_token %}
+  <input type="hidden" name="language" id="langInput" />
+  <input type="hidden" name="next" value="{{ request.get_full_path }}" />
+</form>

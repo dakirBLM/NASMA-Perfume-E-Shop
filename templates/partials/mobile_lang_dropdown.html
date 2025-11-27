@@ -1,0 +1,46 @@
+{# Reusable mobile language dropdown button #}
+<div class="mobile-lang-dd">
+  <button type="button" class="mobile-lang-toggle" aria-haspopup="true" aria-expanded="false" title="Change language">
+    <i class="fas fa-globe"></i>
+  </button>
+  <div class="mobile-lang-menu" role="menu">
+    <button type="button" data-lang="en" role="menuitem">EN</button>
+    <button type="button" data-lang="ar" role="menuitem">AR</button>
+    <button type="button" data-lang="cs" role="menuitem">CS</button>
+    <button type="button" data-lang="pl" role="menuitem">PL</button>
+  </div>
+</div>
+<style>
+  .mobile-lang-dd { display:inline-flex; position:relative; margin-left:2px; align-items:center; flex-shrink:0; }
+  .header-content .mobile-lang-dd { flex-wrap:nowrap; }
+  .mobile-lang-toggle { background:var(--secondary,#f7f3ed); border:1px solid var(--border,rgba(212,165,116,0.3)); color:var(--foreground,#4a3728); width:30px; height:30px; border-radius:8px; font-size:0.9rem; display:flex; align-items:center; justify-content:center; cursor:pointer; transition:background .25s ease,color .25s ease; }
+  .mobile-lang-toggle:hover { background:var(--accent,#e8d5b7); }
+  .mobile-lang-menu { position:absolute; top:110%; left:0; background:rgba(255,255,255,0.95); border:1px solid var(--border,rgba(212,165,116,0.3)); border-radius:8px; padding:4px; display:none; box-shadow:0 8px 24px rgba(0,0,0,0.15); backdrop-filter:blur(12px); }
+  .mobile-lang-menu.open { display:flex; flex-direction:column; gap:5px; }
+  .mobile-lang-menu button { background:var(--secondary,#f7f3ed); border:1px solid var(--border,rgba(212,165,116,0.3)); padding:4px 8px; font-size:0.7rem; border-radius:4px; cursor:pointer; color:var(--foreground,#4a3728); }
+  .mobile-lang-menu button:hover { background:var(--accent,#e8d5b7); }
+  @media (min-width:768px){ .mobile-lang-dd { display:none; } }
+</style>
+<script>
+(function(){
+  const dd = document.querySelector('.mobile-lang-dd');
+  if(!dd) return;
+  const toggle = dd.querySelector('.mobile-lang-toggle');
+  const menu = dd.querySelector('.mobile-lang-menu');
+  function close(){ menu.classList.remove('open'); toggle.setAttribute('aria-expanded','false'); }
+  toggle.addEventListener('click',()=>{ menu.classList.toggle('open'); toggle.setAttribute('aria-expanded', menu.classList.contains('open')); });
+  menu.querySelectorAll('button[data-lang]').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      // Look up the form lazily so it works even if defined later in DOM
+      const form = document.getElementById('langForm');
+      const langInput = document.getElementById('langInput');
+      if (form && langInput) {
+        langInput.value = btn.dataset.lang;
+        form.submit();
+      }
+      close();
+    });
+  });
+  document.addEventListener('click',e=>{ if(!dd.contains(e.target)) close(); });
+})();
+</script>

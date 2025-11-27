@@ -1,0 +1,29 @@
+Order Update - #{{ order.order_number }}
+
+Hello {{ order.full_name }},
+
+Your order #{{ order.order_number }} has been updated.
+
+{% if status_changed %}
+Status Update:
+Order status changed from {{ old_status|title }} to {{ new_status|title }}
+{% endif %}
+
+{% if tracking_added and order.tracking_number %}
+Tracking Information:
+Shipping Company: {{ order.tracking_company|default:"Not specified" }}
+Tracking Number: {{ order.tracking_number }}
+{% if order.tracking_url %}Tracking URL: {{ order.tracking_url }}{% endif %}
+{% endif %}
+
+Order Summary:
+- Order Number: #{{ order.order_number }}
+- Order Date: {{ order.created_at|date:"F d, Y" }}
+- Current Status: {{ order.status|title }}
+- Total Amount: {{ order.final_total_formatted }}
+
+View your order details: {{ protocol }}://{{ domain }}{% url 'orders:order_detail' order.id %}
+
+If you have any questions, please contact our customer support.
+
+Thank you for shopping with Golden Fragrance!

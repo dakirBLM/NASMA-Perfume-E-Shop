@@ -1,0 +1,987 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-11-16 07:08-0600\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: cs\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n >= 2 && n "
+"<= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;\n"
+
+#: accounts/forms.py:9
+msgid "Full name"
+msgstr "Celé jméno"
+
+#: accounts/forms.py:10
+msgid "Age"
+msgstr "Věk"
+
+#: accounts/forms.py:11
+msgid "Phone"
+msgstr "Telefon"
+
+#: accounts/forms.py:12 templates/orders/checkout.html:1127
+msgid "Email"
+msgstr "E-mail"
+
+#: accounts/forms.py:21
+msgid "Choose a username"
+msgstr "Zvolte uživatelské jméno"
+
+#: accounts/forms.py:22
+msgid "Enter your email"
+msgstr "Zadejte svůj e-mail"
+
+#: accounts/forms.py:23
+msgid "Enter password"
+msgstr "Zadejte heslo"
+
+#: accounts/forms.py:24
+msgid "Confirm password"
+msgstr "Potvrďte heslo"
+
+#: accounts/forms.py:25
+msgid "Enter your full name"
+msgstr "Zadejte své celé jméno"
+
+#: accounts/forms.py:26
+msgid "Your age"
+msgstr "Váš věk"
+
+#: accounts/forms.py:27
+msgid "Phone number"
+msgstr "Telefonní číslo"
+
+#: accounts/forms.py:32
+msgid "This email address is already registered."
+msgstr "Tento e‑mail je již registrován."
+
+#: accounts/forms.py:38
+msgid "This username is already taken."
+msgstr "Toto uživatelské jméno je již obsazeno."
+
+#: templates/accounts/wishlist.html:975 templates/home.html:1917
+#: templates/home.html:2155 templates/orders/order_detail.html:1152
+#: templates/orders/order_history.html:913
+#: templates/products/category_list.html:910
+#: templates/products/collection_list.html:907
+#: templates/products/product_detail.html:1029
+#: templates/products/product_list.html:1208
+msgid "Golden Fragrance"
+msgstr "Golden Fragrance"
+
+#: templates/accounts/wishlist.html:980 templates/accounts/wishlist.html:1068
+#: templates/home.html:1923 templates/home.html:2054
+#: templates/orders/cart.html:911 templates/orders/cart.html:999
+#: templates/orders/checkout.html:1008 templates/orders/checkout.html:1096
+#: templates/orders/order_detail.html:1157
+#: templates/orders/order_detail.html:1245
+#: templates/orders/order_history.html:918
+#: templates/orders/order_history.html:1006
+#: templates/products/category_list.html:915
+#: templates/products/category_list.html:1018
+#: templates/products/collection_list.html:912
+#: templates/products/collection_list.html:1015
+#: templates/products/product_detail.html:1034
+#: templates/products/product_detail.html:1137
+#: templates/products/product_list.html:1213
+#: templates/products/product_list.html:1315
+msgid "Home"
+msgstr "Domů"
+
+#: templates/accounts/wishlist.html:981 templates/accounts/wishlist.html:1069
+#: templates/home.html:1924 templates/home.html:2055
+#: templates/orders/cart.html:912 templates/orders/cart.html:1000
+#: templates/orders/checkout.html:1009 templates/orders/checkout.html:1097
+#: templates/orders/order_detail.html:1158
+#: templates/orders/order_detail.html:1246
+#: templates/orders/order_history.html:919
+#: templates/orders/order_history.html:1007
+#: templates/products/category_list.html:916
+#: templates/products/category_list.html:1019
+#: templates/products/collection_list.html:913
+#: templates/products/collection_list.html:1016
+#: templates/products/product_detail.html:1035
+#: templates/products/product_detail.html:1138
+#: templates/products/product_list.html:1214
+#: templates/products/product_list.html:1316
+msgid "Perfumes"
+msgstr "Parfémy"
+
+#: templates/accounts/wishlist.html:982 templates/accounts/wishlist.html:1070
+#: templates/home.html:1925 templates/home.html:2056
+#: templates/orders/cart.html:913 templates/orders/cart.html:1001
+#: templates/orders/checkout.html:1010 templates/orders/checkout.html:1098
+#: templates/orders/order_detail.html:1159
+#: templates/orders/order_detail.html:1247
+#: templates/orders/order_history.html:920
+#: templates/orders/order_history.html:1008
+#: templates/products/category_list.html:917
+#: templates/products/category_list.html:1020
+#: templates/products/collection_list.html:914
+#: templates/products/collection_list.html:1017
+#: templates/products/product_detail.html:1036
+#: templates/products/product_detail.html:1139
+#: templates/products/product_list.html:1215
+#: templates/products/product_list.html:1317
+msgid "Collections"
+msgstr "Kolekce"
+
+#: templates/accounts/wishlist.html:983 templates/accounts/wishlist.html:1071
+#: templates/home.html:1926 templates/home.html:2057
+#: templates/orders/cart.html:914 templates/orders/cart.html:1002
+#: templates/orders/checkout.html:1011 templates/orders/checkout.html:1099
+#: templates/orders/order_detail.html:1160
+#: templates/orders/order_detail.html:1248
+#: templates/orders/order_history.html:921
+#: templates/orders/order_history.html:1009
+#: templates/products/category_list.html:918
+#: templates/products/category_list.html:1021
+#: templates/products/collection_list.html:915
+#: templates/products/collection_list.html:1018
+#: templates/products/product_detail.html:1037
+#: templates/products/product_detail.html:1140
+#: templates/products/product_list.html:1216
+#: templates/products/product_list.html:1318
+msgid "Categories"
+msgstr "Kategorie"
+
+#: templates/accounts/wishlist.html:984 templates/accounts/wishlist.html:1072
+#: templates/home.html:1928 templates/home.html:2059
+#: templates/orders/cart.html:915 templates/orders/cart.html:1003
+#: templates/orders/checkout.html:1012 templates/orders/order_detail.html:1161
+#: templates/orders/order_detail.html:1249
+#: templates/orders/order_history.html:922
+#: templates/products/category_list.html:920
+#: templates/products/collection_list.html:917
+msgid "Orders"
+msgstr "Objednávky"
+
+#: templates/accounts/wishlist.html:985 templates/accounts/wishlist.html:1073
+#: templates/home.html:1931 templates/home.html:2061
+#: templates/orders/cart.html:916 templates/orders/cart.html:1004
+#: templates/orders/checkout.html:1013 templates/orders/checkout.html:1101
+#: templates/orders/order_detail.html:1162
+#: templates/orders/order_detail.html:1250
+#: templates/orders/order_history.html:923
+#: templates/orders/order_history.html:1011
+#: templates/products/category_list.html:922
+#: templates/products/category_list.html:1025
+#: templates/products/collection_list.html:919
+#: templates/products/collection_list.html:1022
+#: templates/products/product_detail.html:1041
+#: templates/products/product_detail.html:1144
+#: templates/products/product_list.html:1220
+#: templates/products/product_list.html:1322
+msgid "Contact"
+msgstr "Kontakt"
+
+#: templates/accounts/wishlist.html:992 templates/accounts/wishlist.html:1056
+#: templates/home.html:1939 templates/home.html:2029
+#: templates/orders/cart.html:923 templates/orders/cart.html:987
+#: templates/orders/checkout.html:1020 templates/orders/checkout.html:1084
+#: templates/orders/order_detail.html:1169
+#: templates/orders/order_detail.html:1233
+#: templates/orders/order_history.html:930
+#: templates/orders/order_history.html:994
+#: templates/products/category_list.html:929
+#: templates/products/category_list.html:1006
+#: templates/products/collection_list.html:926
+#: templates/products/collection_list.html:1003
+#: templates/products/product_detail.html:1048
+#: templates/products/product_detail.html:1125
+#: templates/products/product_list.html:1227
+#: templates/products/product_list.html:1303
+msgid "Search fragrances..."
+msgstr "Hledat parfémy..."
+
+#: templates/accounts/register.html:1
+msgid "Create Account"
+msgstr "Vytvořit účet"
+
+#: templates/accounts/register.html:1
+msgid "Join Golden Fragrance and discover luxury scents"
+msgstr "Přidejte se k Golden Fragrance a objevte luxusní vůně"
+
+#: templates/accounts/register.html:1
+msgid "Full Name"
+msgstr "Celé jméno"
+
+#: templates/accounts/register.html:1
+#: templates/accounts/register.html:1
+msgid "Email Address"
+msgstr "E-mailová adresa"
+
+#: templates/accounts/register.html:1
+msgid "Username"
+msgstr "Uživatelské jméno"
+
+#: templates/accounts/register.html:1
+msgid "Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only."
+msgstr "Povinné. 150 znaků nebo méně. Pouze písmena, číslice a @/./+/-/_ ."
+
+#: templates/accounts/register.html:1
+msgid "Password"
+msgstr "Heslo"
+
+#: templates/accounts/register.html:1
+msgid "Confirm Password"
+msgstr "Potvrďte heslo"
+
+#: templates/accounts/register.html:1
+msgid "Password Requirements:"
+msgstr "Požadavky na heslo:"
+
+#: templates/accounts/register.html:1
+msgid "Your password can't be too similar to your other personal information."
+msgstr "Heslo nesmí být příliš podobné vašim ostatním osobním údajům."
+
+#: templates/accounts/register.html:1
+msgid "Your password must contain at least 8 characters."
+msgstr "Heslo musí obsahovat alespoň 8 znaků."
+
+#: templates/accounts/register.html:1
+msgid "Your password can't be a commonly used password."
+msgstr "Heslo nesmí být běžně používané heslo."
+
+#: templates/accounts/register.html:1
+msgid "Your password can't be entirely numeric."
+msgstr "Heslo nesmí být pouze číselné."
+
+#: templates/accounts/register.html:1
+msgid "Already have an account?"
+msgstr "Máte již účet?"
+
+#: templates/accounts/register.html:1
+msgid "Sign in to your account"
+msgstr "Přihlaste se ke svému účtu"
+
+#: templates/accounts/wishlist.html:1081
+msgid "My Wishlist"
+msgstr "Můj seznam přání"
+
+#: templates/accounts/wishlist.html:1082
+#, fuzzy
+#| msgid "Browse our complete collection of luxury fragrances"
+msgid "Your curated collection of favorite fragrances"
+msgstr "Procházejte naši kompletní kolekci luxusních vůní"
+
+#: templates/accounts/wishlist.html:1088
+msgid "Items Saved"
+msgstr "Uložené položky"
+
+#: templates/accounts/wishlist.html:1092
+#, fuzzy
+#| msgid "Total"
+msgid "Total Value"
+msgstr "Celkem"
+
+#: templates/accounts/wishlist.html:1102
+msgid "Remove from wishlist"
+msgstr "Odstranit ze seznamu přání"
+
+#: templates/accounts/wishlist.html:1105
+#, fuzzy
+#| msgid "Add to Cart"
+msgid "Add to cart"
+msgstr "Přidat do košíku"
+
+#: templates/accounts/wishlist.html:1135
+msgid "Added on"
+msgstr "Přidáno"
+
+#: templates/accounts/wishlist.html:1141
+#: templates/products/product_detail.html:1227
+msgid "Add to Cart"
+msgstr "Přidat do košíku"
+
+#: templates/accounts/wishlist.html:1155
+msgid "Clear Wishlist"
+msgstr "Vymazat seznam přání"
+
+#: templates/accounts/wishlist.html:1158 templates/orders/cart.html:1093
+#: templates/orders/cart.html:1098 templates/orders/order_detail.html:1455
+#: templates/orders/order_history.html:1055
+msgid "Continue Shopping"
+msgstr "Pokračovat v nákupu"
+
+#: templates/accounts/wishlist.html:1167
+#, fuzzy
+#| msgid "Your cart is empty"
+msgid "Your wishlist is empty"
+msgstr "Váš košík je prázdný"
+
+#: templates/accounts/wishlist.html:1168
+#, fuzzy
+#| msgid "Discover our luxury fragrances and add them to your cart"
+msgid "Start exploring our luxury fragrances and add your favorites here"
+msgstr "Objevte naše luxusní parfémy a přidejte je do košíku"
+
+#: templates/accounts/wishlist.html:1171
+#, fuzzy
+#| msgid "All Products"
+msgid "Explore Products"
+msgstr "Všechny produkty"
+
+#: templates/accounts/wishlist.html:1190 templates/home.html:2276
+#: templates/orders/order_detail.html:1493
+#: templates/orders/order_history.html:1080
+#: templates/products/category_list.html:1086
+#: templates/products/collection_list.html:1096
+#: templates/products/product_detail.html:1321
+#: templates/products/product_list.html:1422
+msgid "Golden Fragrance. All rights reserved."
+msgstr "Golden Fragrance. Všechna práva vyhrazena."
+
+#: templates/accounts/wishlist.html:1454
+#, fuzzy
+#| msgid "Are you sure you want to remove this item from your cart?"
+msgid "Are you sure you want to remove this item from your wishlist?"
+msgstr "Opravdu chcete odstranit tuto položku z košíku?"
+
+#: templates/accounts/wishlist.html:1455
+msgid "Error removing item from wishlist"
+msgstr "Chyba při odstraňování položky ze seznamu přání"
+
+#: templates/accounts/wishlist.html:1456
+msgid "Product added to cart!"
+msgstr "Produkt byl přidán do košíku!"
+
+#: templates/accounts/wishlist.html:1457
+msgid "Error adding product to cart"
+msgstr "Chyba při přidávání produktu do košíku"
+
+#: templates/accounts/wishlist.html:1458
+#, fuzzy
+#| msgid "Are you sure you want to clear your entire cart?"
+msgid "Are you sure you want to clear your entire wishlist?"
+msgstr "Opravdu chcete vyprázdnit celý košík?"
+
+#: templates/accounts/wishlist.html:1459
+msgid "Clearing wishlist..."
+msgstr "Probíhá vymazání seznamu přání..."
+
+#: templates/accounts/wishlist.html:1460
+msgid "Error:"
+msgstr "Chyba:"
+
+#: templates/home.html:2005
+#, fuzzy
+#| msgid "Language"
+msgid "Change language"
+msgstr "Jazyk"
+
+#: templates/home.html:2009
+msgid "English"
+msgstr "English"
+
+#: templates/home.html:2010
+msgid "العربية"
+msgstr "العربية"
+
+#: templates/home.html:2011
+msgid "Čeština"
+msgstr "Čeština"
+
+#: templates/home.html:2012
+msgid "Polski"
+msgstr "Polski"
+
+#: templates/home.html:2045
+msgid "Account"
+msgstr "Účet"
+
+#: templates/home.html:2050
+msgid "Login"
+msgstr "Přihlásit se"
+
+#: templates/home.html:2065
+msgid "Language"
+msgstr "Jazyk"
+
+#: templates/home.html:2067
+msgid "EN"
+msgstr "EN"
+
+#: templates/home.html:2068
+msgid "AR"
+msgstr "AR"
+
+#: templates/home.html:2069
+msgid "CS"
+msgstr "CS"
+
+#: templates/home.html:2070
+msgid "PL"
+msgstr "PL"
+
+#: templates/home.html:2089
+msgid "Your browser does not support the video tag."
+msgstr "Váš prohlížeč nepodporuje značku videa."
+
+#: templates/home.html:2096
+msgid "Premium Fragrance Collection"
+msgstr "Prémiová kolekce vůní"
+
+#: templates/home.html:2099
+msgid "Elegant Perfume Bottles"
+msgstr "Elegantní flakony parfémů"
+
+#: templates/home.html:2102
+msgid "Luxury Scent Experience"
+msgstr "Luxusní zážitek z vůně"
+
+#: templates/home.html:2105 templates/home.html:2108
+msgid "Signature Fragrances"
+msgstr "Podpisové vůně"
+
+#: templates/home.html:2139
+msgid "Skip Video"
+msgstr "Přeskočit video"
+
+#: templates/home.html:2160
+msgid "Discover Now"
+msgstr "Objevte nyní"
+
+#: templates/home.html:2164
+msgid "View Collections"
+msgstr "Zobrazit kolekce"
+
+#: templates/home.html:2177
+msgid "Shop by Category"
+msgstr "Nakupovat podle kategorií"
+
+#: templates/home.html:2178
+msgid ""
+"Explore our carefully curated collections designed to complement your unique "
+"style and personality."
+msgstr ""
+"Prozkoumejte naše pečlivě vybrané kolekce navržené tak, aby doplnily váš "
+"jedinečný styl a osobnost."
+
+#: templates/home.html:2193
+msgid "items"
+msgstr "položek"
+
+#: templates/home.html:2206
+msgid "Featured Products"
+msgstr "Doporučené produkty"
+
+#: templates/home.html:2207
+msgid ""
+"Discover our handpicked selection of luxury perfumes that define elegance "
+"and sophistication."
+msgstr ""
+"Objevte náš pečlivě vybraný výběr luxusních parfémů, které definují eleganci "
+"a sofistikovanost."
+
+#: templates/home.html:2217 templates/products/product_list.html:1365
+msgid "New"
+msgstr "Nové"
+
+#: templates/home.html:2218 templates/products/product_list.html:1366
+msgid "Sale"
+msgstr "Sleva"
+
+#: templates/home.html:2244 templates/orders/order_history.html:1041
+#: templates/products/product_list.html:1392
+msgid "View Details"
+msgstr "Zobrazit detaily"
+
+#: templates/home.html:2251
+msgid "View All Products"
+msgstr "Zobrazit všechny produkty"
+
+#: templates/orders/cart.html:8 templates/orders/cart.html:1012
+msgid "Shopping Cart"
+msgstr "Nákupní košík"
+
+#: templates/orders/cart.html:1047
+msgid "Clear Cart"
+msgstr "Vyprázdnit košík"
+
+#: templates/orders/cart.html:1054 templates/orders/checkout.html:1176
+#: templates/orders/order_detail.html:1405
+msgid "Order Summary"
+msgstr "Shrnutí objednávky"
+
+#: templates/orders/cart.html:1057 templates/orders/checkout.html:1189
+msgid "Subtotal:"
+msgstr "Mezisoučet:"
+
+#: templates/orders/cart.html:1062 templates/orders/checkout.html:1194
+msgid "Shipping:"
+msgstr "Doprava:"
+
+#: templates/orders/cart.html:1067 templates/orders/checkout.html:1199
+msgid "Tax:"
+msgstr "Daň:"
+
+#: templates/orders/cart.html:1072 templates/orders/checkout.html:1204
+msgid "Total:"
+msgstr "Celkem:"
+
+#: templates/orders/cart.html:1079
+msgid "Proceed to Checkout"
+msgstr "Pokračovat k pokladně"
+
+#: templates/orders/cart.html:1086
+msgid "Login to Checkout"
+msgstr "Přihlásit se k pokladně"
+
+#: templates/orders/cart.html:1095
+msgid "Your cart is empty"
+msgstr "Váš košík je prázdný"
+
+#: templates/orders/cart.html:1096
+msgid "Discover our luxury fragrances and add them to your cart"
+msgstr "Objevte naše luxusní parfémy a přidejte je do košíku"
+
+#: templates/orders/cart.html:1238
+msgid "Are you sure you want to remove this item from your cart?"
+msgstr "Opravdu chcete odstranit tuto položku z košíku?"
+
+#: templates/orders/cart.html:1263
+msgid "Are you sure you want to clear your entire cart?"
+msgstr "Opravdu chcete vyprázdnit celý košík?"
+
+#: templates/orders/checkout.html:8 templates/orders/checkout.html:1109
+msgid "Checkout"
+msgstr "Pokladna"
+
+#: templates/orders/checkout.html:1100 templates/orders/order_history.html:1010
+#: templates/products/category_list.html:1023
+#: templates/products/collection_list.html:1020
+#: templates/products/product_detail.html:1039
+#: templates/products/product_detail.html:1142
+#: templates/products/product_list.html:1218
+#: templates/products/product_list.html:1320
+msgid "My Orders"
+msgstr "Moje objednávky"
+
+#: templates/orders/checkout.html:1119 templates/orders/order_detail.html:1340
+msgid "Shipping Information"
+msgstr "Dodací údaje"
+
+#: templates/orders/checkout.html:1133
+msgid "Address"
+msgstr "Adresa"
+
+#: templates/orders/checkout.html:1139
+msgid "City"
+msgstr "Město"
+
+#: templates/orders/checkout.html:1143
+msgid "Postal Code"
+msgstr "PSČ"
+
+#: templates/orders/checkout.html:1149
+msgid "Country"
+msgstr "Země"
+
+#: templates/orders/checkout.html:1155
+msgid "Payment Information"
+msgstr "Platební údaje"
+
+#: templates/orders/checkout.html:1163
+msgid "Payments secured by Stripe"
+msgstr "Platby jsou zabezpečené službou Stripe"
+
+#: templates/orders/checkout.html:1169
+msgid "Pay"
+msgstr "Zaplatit"
+
+#: templates/orders/order_detail.html:8
+msgid "Order Details"
+msgstr "Detaily objednávky"
+
+#: templates/orders/order_detail.html:1260
+#: templates/orders/order_detail.html:1469
+msgid "Back to Order History"
+msgstr "Zpět na historii objednávek"
+
+#: templates/orders/order_detail.html:1265
+#: templates/orders/order_history.html:1026
+msgid "Order"
+msgstr "Objednávka"
+
+#: templates/orders/order_detail.html:1269
+msgid "Order Date"
+msgstr "Datum objednávky"
+
+#: templates/orders/order_detail.html:1273
+#: templates/products/product_detail.html:1209
+msgid "Status"
+msgstr "Stav"
+
+#: templates/orders/order_detail.html:1288
+msgid "Total Amount"
+msgstr "Celková částka"
+
+#: templates/orders/order_detail.html:1292
+msgid "Payment Method"
+msgstr "Způsob platby"
+
+#: templates/orders/order_detail.html:1297
+msgid "Stripe"
+msgstr "Stripe"
+
+#: templates/orders/order_detail.html:1309
+msgid "Order Items"
+msgstr "Položky objednávky"
+
+#: templates/orders/order_detail.html:1323
+msgid "Kč each"
+msgstr "Kč za kus"
+
+#: templates/orders/order_detail.html:1326
+msgid "Qty"
+msgstr "Množství"
+
+#: templates/orders/order_detail.html:1359
+msgid "Tracking Information"
+msgstr "Informace o sledování"
+
+#: templates/orders/order_detail.html:1365
+msgid "Shipping Company"
+msgstr "Dopravce"
+
+#: templates/orders/order_detail.html:1371
+msgid "Tracking Number"
+msgstr "Číslo zásilky"
+
+#: templates/orders/order_detail.html:1385
+msgid "Track Your Package"
+msgstr "Sledovat zásilku"
+
+#: templates/orders/order_detail.html:1395
+msgid "Shipping Update"
+msgstr "Aktualizace dopravy"
+
+#: templates/orders/order_detail.html:1397
+msgid ""
+"Your order has been shipped. Tracking information will be available soon."
+msgstr ""
+"Vaše objednávka byla odeslána. Informace o sledování budou brzy dostupné."
+
+#: templates/orders/order_detail.html:1409
+msgid "Subtotal"
+msgstr "Mezisoučet"
+
+#: templates/orders/order_detail.html:1413
+msgid "Shipping"
+msgstr "Doprava"
+
+#: templates/orders/order_detail.html:1417
+msgid "Tax"
+msgstr "Daň"
+
+#: templates/orders/order_detail.html:1421
+msgid "Total"
+msgstr "Celkem"
+
+#: templates/orders/order_detail.html:1431
+msgid "Order Actions"
+msgstr "Akce objednávky"
+
+#: templates/orders/order_detail.html:1437
+#: templates/products/product_detail.html:1275
+msgid "Write a Review"
+msgstr "Napsat recenzi"
+
+#: templates/orders/order_detail.html:1444
+msgid "Track Package"
+msgstr "Sledovat zásilku"
+
+#: templates/orders/order_detail.html:1450
+msgid "View All Orders"
+msgstr "Zobrazit všechny objednávky"
+
+#: templates/orders/order_detail.html:1466
+msgid "Order Not Found"
+msgstr "Objednávka nenalezena"
+
+#: templates/orders/order_detail.html:1467
+msgid ""
+"The order you're looking for doesn't exist or you don't have permission to "
+"view it."
+msgstr "Hledaná objednávka neexistuje nebo nemáte oprávnění ji zobrazit."
+
+#: templates/orders/order_detail.html:1480
+#: templates/orders/order_history.html:1067
+#: templates/products/category_list.html:1073
+#: templates/products/collection_list.html:1083
+#: templates/products/product_detail.html:1308
+#: templates/products/product_list.html:1409
+msgid "Chat with us on WhatsApp"
+msgstr "Chatujte s námi na WhatsApp"
+
+#: templates/orders/order_history.html:8
+#: templates/orders/order_history.html:1019
+msgid "Order History"
+msgstr "Historie objednávek"
+
+#: templates/orders/order_history.html:1052
+msgid "No orders yet"
+msgstr "Zatím žádné objednávky"
+
+#: templates/orders/order_history.html:1053
+msgid "Start shopping to see your order history here"
+msgstr "Začněte nakupovat a vaše objednávky se zobrazí zde"
+
+#: templates/products/category_list.html:1034
+#: templates/products/product_list.html:1338
+msgid "All Categories"
+msgstr "Všechny kategorie"
+
+#: templates/products/category_list.html:1035
+msgid ""
+"Explore our wide range of fragrance categories to find your perfect scent"
+msgstr ""
+"Prozkoumejte naši širokou nabídku kategorií vůní a najděte si tu pravou"
+
+#: templates/products/category_list.html:1051
+#: templates/products/collection_list.html:1059
+#, fuzzy, python-format
+#| msgid ""
+#| "\n"
+#| "                                %(count)s products\n"
+#| "                                "
+#| msgid_plural ""
+#| "\n"
+#| "                                %(count)s products\n"
+#| "                                "
+msgid ""
+"\n"
+"                                %(count)s product\n"
+"                                "
+msgid_plural ""
+"\n"
+"                                %(count)s products\n"
+"                                "
+msgstr[0] ""
+"\n"
+"                                %(count)s produkt\n"
+"                                "
+msgstr[1] ""
+"\n"
+"                                %(count)s produkty\n"
+"                                "
+msgstr[2] ""
+"\n"
+"                                %(count)s produktů\n"
+"                                "
+msgstr[3] ""
+"\n"
+"                                %(count)s produktů\n"
+"                                "
+
+#: templates/products/collection_list.html:1031
+msgid "Our Collections"
+msgstr "Naše kolekce"
+
+# Collections page subtitle
+#: templates/products/collection_list.html:1032
+msgid ""
+"Discover our carefully curated fragrance collections, each telling a unique "
+"story"
+msgstr ""
+"Objevte pečlivě sestavené kolekce vůní, z nichž každá vypráví jedinečný "
+"příběh"
+
+#: templates/products/collection_list.html:1054
+#, python-format
+msgid ""
+"Explore our exclusive %(name)s collection featuring unique and captivating "
+"fragrances."
+msgstr ""
+"Prozkoumejte naši exkluzivní kolekci %(name)s s jedinečnými a poutavými "
+"vůněmi."
+
+#: templates/products/collection_list.html:1066
+msgid "Available"
+msgstr "Dostupné"
+
+#: templates/products/collection_list.html:1066
+msgid "Coming Soon"
+msgstr "Již brzy"
+
+#: templates/products/collection_list.html:1069
+msgid "Explore Collection"
+msgstr "Prozkoumat kolekci"
+
+# Product detail additions
+#: templates/products/product_detail.html:1057
+msgid "Search"
+msgstr "Hledat"
+
+#: templates/products/product_detail.html:1185
+msgid "Category"
+msgstr "Kategorie"
+
+#: templates/products/product_detail.html:1189
+msgid "Collection"
+msgstr "Kolekce"
+
+#: templates/products/product_detail.html:1194
+msgid "Standard"
+msgstr "Standardní"
+
+#: templates/products/product_detail.html:1199
+msgid "Stock"
+msgstr "Sklad"
+
+#: templates/products/product_detail.html:1202
+msgid "available"
+msgstr "dostupné"
+
+#: templates/products/product_detail.html:1204
+#: templates/products/product_detail.html:1236
+msgid "Out of Stock"
+msgstr "Není skladem"
+
+#: templates/products/product_detail.html:1211
+msgid "New Arrival"
+msgstr "Novinka"
+
+#: templates/products/product_detail.html:1211
+msgid "Regular"
+msgstr "Běžné"
+
+#: templates/products/product_detail.html:1218
+msgid "Quantity:"
+msgstr "Množství:"
+
+#: templates/products/product_detail.html:1248
+msgid "Customer Reviews"
+msgstr "Zákaznické recenze"
+
+#: templates/products/product_detail.html:1269
+msgid "No reviews yet. Be the first to review this product!"
+msgstr "Zatím žádné recenze. Buďte první, kdo tento produkt ohodnotí!"
+
+#: templates/products/product_detail.html:1279
+msgid "Rating"
+msgstr "Hodnocení"
+
+#: templates/products/product_detail.html:1281
+msgid "5 Stars"
+msgstr "5 hvězdiček"
+
+#: templates/products/product_detail.html:1282
+msgid "4 Stars"
+msgstr "4 hvězdičky"
+
+#: templates/products/product_detail.html:1283
+msgid "3 Stars"
+msgstr "3 hvězdičky"
+
+#: templates/products/product_detail.html:1284
+msgid "2 Stars"
+msgstr "2 hvězdičky"
+
+#: templates/products/product_detail.html:1285
+msgid "1 Star"
+msgstr "1 hvězdička"
+
+#: templates/products/product_detail.html:1289
+msgid "Comment"
+msgstr "Komentář"
+
+#: templates/products/product_detail.html:1290
+msgid "Share your experience with this product..."
+msgstr "Podělte se o svou zkušenost s tímto produktem..."
+
+#: templates/products/product_detail.html:1292
+msgid "Submit Review"
+msgstr "Odeslat recenzi"
+
+#: templates/products/product_detail.html:1297
+msgid "Please"
+msgstr "Prosím"
+
+#: templates/products/product_detail.html:1297
+msgid "login"
+msgstr "přihlaste se"
+
+#: templates/products/product_detail.html:1297
+msgid "to write a review."
+msgstr "abyste mohli napsat recenzi."
+
+#: templates/products/product_list.html:9
+#: templates/products/product_list.html:1331
+msgid "All Products"
+msgstr "Všechny produkty"
+
+#: templates/products/product_list.html:1332
+msgid "Browse our complete collection of luxury fragrances"
+msgstr "Procházejte naši kompletní kolekci luxusních vůní"
+
+#: templates/products/product_list.html:1348
+msgid "All Collections"
+msgstr "Všechny kolekce"
+
+#: templates/products/product_list.html:1397
+msgid "No products found"
+msgstr "Nebyly nalezeny žádné produkty"
+
+#: templates/products/product_list.html:1398
+msgid "Try adjusting your search or filters"
+msgstr "Zkuste upravit vyhledávání nebo filtry"
+
+# Profile page new translations
+
+#: templates/accounts/profile.html
+msgid "Wishlist"
+msgstr "Seznam přání"
+
+#: templates/accounts/profile.html
+msgid "Member since"
+msgstr "Člen od"
+
+#: templates/accounts/profile.html
+msgid "Loyalty"
+msgstr "Věrnost"
+
+#: templates/accounts/profile.html
+msgid "Personal Information"
+msgstr "Osobní údaje"
+
+#: templates/accounts/profile.html
+msgid "Security"
+msgstr "Zabezpečení"
+
+#: templates/accounts/profile.html
+msgid "Save Changes"
+msgstr "Uložit změny"
+
+#: templates/accounts/profile.html
+msgid "Logout"
+msgstr "Odhlásit se"
+
+# Login page translations
+#: templates/accounts/login.html
+msgid "Welcome Back"
+msgstr "Vítejte zpět"
+
+#: templates/accounts/login.html
+msgid "Sign In"
+msgstr "Přihlásit se"
+
+#: templates/accounts/login.html
+msgid "Don't have an account?"
+msgstr "Nemáte účet?"
+
+#: templates/accounts/login.html
+msgid "Sign up here"
+msgstr "Zaregistrujte se zde"

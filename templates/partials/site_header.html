@@ -1,0 +1,46 @@
+{% load static i18n %}
+<header id="header" class="scrolled">
+  <div class="header-container">
+    <div class="header-content">
+      <div class="logo">
+        <a href="{% url 'home' %}">
+          <img src="{% static 'videos/images/NASMA1.png' %}" alt="{% trans 'Golden Fragrance' %}" class="logo-image">
+        </a>
+        {% include 'partials/mobile_lang_dropdown.html' %}
+      </div>
+      <nav>
+        <a href="{% url 'home' %}" class="nav-link">{% trans 'Home' %}</a>
+        <a href="{% url 'products:product_list' %}" class="nav-link">{% trans 'Perfumes' %}</a>
+        <a href="{% url 'products:collection_list' %}" class="nav-link">{% trans 'Collections' %}</a>
+        <a href="{% url 'products:category_list' %}" class="nav-link">{% trans 'Categories' %}</a>
+        {% if user.is_authenticated %}
+          <a href="{% url 'orders:order_history' %}" class="nav-link">{% trans 'Orders' %}</a>
+        {% endif %}
+        <a href="#" class="nav-link">{% trans 'Contact' %}</a>
+      </nav>
+      <div class="search-container">
+        <div class="search-wrapper">
+          <i class="fas fa-search search-icon"></i>
+          <form method="get" action="{% url 'products:product_list' %}">
+            <input type="search" name="q" placeholder="{% trans 'Search fragrances...' %}" class="search-input">
+          </form>
+        </div>
+      </div>
+      <div class="header-actions">
+        <a href="{% url 'accounts:profile' %}" class="icon-button" title="{% trans 'Account' %}">
+          <i class="fas fa-user"></i>
+          <span class="sr-only">{% trans 'Account' %}</span>
+        </a>
+        <a href="{% url 'accounts:wishlist' %}" class="icon-button" title="{% trans 'Wishlist' %}">
+          <i class="fas fa-heart"></i>
+          <span class="sr-only">{% trans 'Wishlist' %}</span>
+        </a>
+        <a href="{% url 'orders:cart' %}" class="icon-button" title="{% trans 'Cart' %}">
+          <i class="fas fa-shopping-bag"></i>
+          <span class="sr-only">{% trans 'Cart' %}</span>
+          {% if cart_count %}<span class="badge">{{ cart_count }}</span>{% endif %}
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
